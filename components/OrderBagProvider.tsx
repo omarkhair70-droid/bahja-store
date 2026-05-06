@@ -21,17 +21,20 @@ const OrderBagContext = createContext<OrderBagContextValue | null>(null);
 
 export function OrderBagProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<OrderBagItem[]>([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const raw = localStorage.getItem(ORDER_BAG_STORAGE_KEY);
     if (!raw) return;
     try { setItems(JSON.parse(raw)); } catch {}
+    setHasLoaded(true);
   }, []);
 
   useEffect(() => {
+    if (!hasLoaded) return;
     localStorage.setItem(ORDER_BAG_STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
+  }, [hasLoaded, items]);
 
   const value = useMemo<OrderBagContextValue>(() => ({
     items,
