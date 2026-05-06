@@ -7,7 +7,7 @@ const collectionCards = [
     arabicTitle: 'شنط خيط الهيمالايا',
     href: '/shop?collection=himalayan-thread-bags',
     description: 'تصاميم هيمالايا بتفاصيل دافئة وأناقة ناعمة.',
-    image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-teal-gold-chain-01.webp'
+    image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp'
   },
   {
     title: 'شنط خيوط السلسلة',
@@ -37,7 +37,7 @@ export default function المجموعاتPage() {
     <SectionShell title="المجموعات" subtitle="تشكيلات بهجة ستور بلمسة يدوية أنيقة.">
       <div className="grid gap-5 md:grid-cols-2">
         {collectionCards.map((c) => (
-          <CollectionCard key={c.title} title={c.title} arabicTitle={c.arabicTitle} href={c.href} description={c.description} image={c.image} />
+          <CollectionCard key={c.title} title={c.title} arabicTitle={c.arabicTitle} href={c.href} description={c.description} image={c.image} categorySlug={c.href.includes("canvas-art") ? "canvas-art" : c.href.includes("hair-accessories") ? "hair-accessories" : "handmade-bags"} />
         ))}
       </div>
     </SectionShell>

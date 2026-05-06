@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { useOrderBag } from '@/components/OrderBagProvider';
 import { buildOrderWhatsAppMessage } from '@/lib/order-bag';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
-import { displaySizeAr, formatArabicPriceGuide, getProductArabicTitle } from '@/lib/utils';
+import { displaySizeAr, getProductArabicTitle } from '@/lib/utils';
+import ProductImage from '@/components/ProductImage';
 
 export default function CartPage() {
   const { items, removeItem, updateNote, updateQuantity, clearBag } = useOrderBag();
@@ -31,13 +31,13 @@ export default function CartPage() {
             {items.map((item) => (
               <article key={`${item.productSlug}-${item.selectedSize ?? 'x'}`} className="grid gap-4 rounded-3xl border border-bahja-beige bg-white/80 p-4 sm:grid-cols-[120px_1fr]">
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bahja-cream">
-                  <Image src={item.image} alt={getProductArabicTitle(item.arabicTitle, item.title)} fill className="object-cover" />
+                  <ProductImage src={item.image} alt={getProductArabicTitle(item.arabicTitle, item.title)} categorySlug={item.collection.includes("كانفس") ? "canvas-art" : item.collection.includes("إكسسوارات") ? "hair-accessories" : "handmade-bags"} usage="thumb" />
                 </div>
                 <div className="space-y-2">
                   <p className="font-semibold text-bahja-brown">{getProductArabicTitle(item.arabicTitle, item.title)}</p>
                   <p className="text-xs text-bahja-taupe">{item.title}</p>
                   <p className="text-sm text-bahja-taupe">{item.collection}{item.selectedSize ? ` • ${displaySizeAr(item.selectedSize)}` : ''}</p>
-                  <p className="rounded-xl bg-bahja-cream/80 px-3 py-2 text-sm">{formatArabicPriceGuide(item.priceGuide)}</p>
+                  <p className="rounded-xl bg-bahja-cream/80 px-3 py-2 text-sm">{item.priceGuide}</p>
                   <div className="flex items-center gap-2">
                     <button onClick={() => updateQuantity(item, item.quantity - 1)} className="rounded-full border px-2">-</button>
                     <span>{item.quantity}</span>
