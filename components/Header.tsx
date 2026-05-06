@@ -11,7 +11,6 @@ const links = [
   ['الرئيسية', '/'],
   ['المتجر', '/shop'],
   ['المجموعات', '/collections'],
-  ['من نحن', '/about'],
   ['الطلبات الخاصة', '/custom-orders'],
   ['تواصل معنا', '/contact']
 ];
@@ -21,19 +20,19 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-bahja-beige/60 bg-bahja-ivory/90 backdrop-blur-md">
-      <nav className="mx-auto w-full max-w-6xl px-4 py-2.5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+    <header className="sticky top-0 z-30 border-b border-bahja-beige/60 bg-bahja-ivory/95 backdrop-blur-md">
+      <nav className="mx-auto w-full max-w-6xl px-3 py-2 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-[1fr_auto] items-center gap-2">
           <Link href="/" className="justify-self-end text-right text-base font-semibold leading-tight text-bahja-brown sm:text-xl">
             بهجة ستور
-            <span className="block text-[10px] font-normal text-bahja-taupe sm:text-xs">Bahja Store</span>
+            <span className="block text-[9px] font-normal text-bahja-taupe sm:text-xs">Bahja Store</span>
           </Link>
 
           <div className="justify-self-start flex items-center gap-1.5 sm:gap-2">
-            <Link href="/cart" className="rounded-full border border-bahja-beige bg-white/80 px-2.5 py-1.5 text-[11px] sm:px-3 sm:py-2 sm:text-sm">
+            <Link href="/cart" className="rounded-full border border-bahja-beige bg-white/80 px-2.5 py-1.5 text-[11px] leading-none sm:px-3 sm:py-2 sm:text-sm">
               السلة ({totalItems})
             </Link>
-            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)} className="px-3 py-1.5 text-[11px] sm:px-4 sm:py-2 sm:text-sm">
+            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)} className="px-2.5 py-1.5 text-[11px] leading-none sm:px-4 sm:py-2 sm:text-sm">
               واتساب
             </WhatsAppButton>
           </div>
@@ -49,7 +48,7 @@ export default function Header() {
                 className={cn(
                   'whitespace-nowrap rounded-full border px-3 py-1.5 transition',
                   isActive
-                    ? 'border-bahja-beige bg-bahja-blush/45 text-bahja-brown'
+                    ? 'border-bahja-beige bg-bahja-blush/55 text-bahja-brown'
                     : 'border-transparent bg-white/40 hover:border-bahja-beige hover:bg-bahja-cream'
                 )}
               >

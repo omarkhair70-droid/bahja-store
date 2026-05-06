@@ -7,20 +7,26 @@ import ProductImage from '@/components/ProductImage';
 import ProductCard from '@/components/ProductCard';
 
 export default function HomePage() {
-  const featuredBags = products.filter((p) => p.categorySlug === 'handmade-bags').slice(0, 6);
+  const featuredBags = products.filter((p) => p.categorySlug === 'handmade-bags').slice(0, 4);
 
   return <>
-    <section className="mx-auto grid max-w-6xl gap-5 px-4 section-space sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:px-8">
-      <div className="space-y-4">
+    <section className="mx-auto grid max-w-6xl gap-4 px-4 py-6 sm:px-6 sm:py-10 lg:grid-cols-[1.1fr_1fr] lg:px-8">
+      <div className="space-y-3">
         <p className="text-sm text-bahja-taupe">بهجة ستور</p>
         <h1 className="editorial-heading">شنط هاند ميد بتفاصيل تحكي ذوقكِ</h1>
-        <p className="text-bahja-taupe">اكتشفي شنط بهجة ستور المصنوعة يدويًا بخيوط ناعمة، ألوان دافئة، وتشطيب أنثوي راقٍ.</p>
-        <p className="text-sm text-bahja-taupe">للغُرز حكايا… وهنا لكل غرزة حكاية</p>
-        <div className="flex flex-wrap gap-3"><Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div>
+        <p className="text-sm text-bahja-taupe">تشكيلة شنط يدوية أنيقة، سهلة الاختيار، وجاهزة للطلب مباشرة عبر واتساب.</p>
+        <div className="flex gap-2"><Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div>
       </div>
-      <div className="grid gap-3 sm:grid-cols-[1fr_140px]">
-        <div className="relative h-[320px] overflow-hidden rounded-[1.8rem] bg-bahja-cream sm:h-[420px]"><ProductImage src="/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp" alt="شنطة خيوط سلسلة أسود وذهبي" categorySlug="handmade-bags" usage="hero" /></div>
-        <div className="relative hidden h-[420px] overflow-hidden rounded-[1.4rem] bg-bahja-cream sm:block"><ProductImage src="/images/bahja/bags-chain-thread/chain-thread-bag-silver-grey-closeup-02.webp" alt="شنطة خيوط سلسلة رمادي فضي" categorySlug="handmade-bags" usage="feature" /></div>
+      <div className="relative h-[290px] overflow-hidden rounded-[1.8rem] bg-bahja-cream sm:h-[400px]">
+        <ProductImage src="/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp" alt="شنطة خيوط سلسلة أسود وذهبي" categorySlug="handmade-bags" usage="hero" />
+      </div>
+    </section>
+
+    <section className="mx-auto max-w-6xl px-4 pb-1 sm:px-6 lg:px-8">
+      <div className="flex gap-2 overflow-x-auto pb-2">
+        {['صناعة يدوية', 'تجهيز حسب الطلب', 'ألوان مخصصة', 'من القاهرة'].map((item) => (
+          <p key={item} className="bahja-chip">{item}</p>
+        ))}
       </div>
     </section>
 
