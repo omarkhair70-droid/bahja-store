@@ -21,13 +21,15 @@ export function makeItemKey(item: Pick<OrderBagItem, 'productSlug' | 'selectedSi
 }
 
 const sizeMap: Record<BagSize, string> = { Small: 'صغير', Medium: 'متوسط', Large: 'كبير' };
+const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+const toArabicNumber = (value: number) => String(value).replace(/\d/g, (d) => arabicDigits[Number(d)]);
 
 export function buildOrderWhatsAppMessage(items: OrderBagItem[], customer?: { customerName?: string; customerPhone?: string; customerAddress?: string; extraNotes?: string; }) {
   const lines = ['مرحبًا بهجة ستور،', 'أرغب في طلب القطع التالية:', ''];
   items.forEach((item, index) => {
-    lines.push(`${index + 1}. ${item.arabicTitle ?? item.title}`);
+    lines.push(`${toArabicNumber(index + 1)}. ${item.arabicTitle ?? item.title}`);
     if (item.selectedSize) lines.push(`المقاس: ${sizeMap[item.selectedSize]}`);
-    lines.push(`الكمية: ${item.quantity}`);
+    lines.push(`الكمية: ${toArabicNumber(item.quantity)}`);
     if (item.customNote?.trim()) lines.push(`ملاحظات: ${item.customNote.trim()}`);
     lines.push('');
   });

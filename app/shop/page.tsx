@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import ProductCard from '@/components/ProductCard';
 import SectionShell from '@/components/SectionShell';
 import { products } from '@/content/bahja-products';
@@ -13,6 +14,11 @@ const FILTERS = [
   { label: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', type: 'category', value: 'hair-accessories' }
 ] as const;
 
+export const metadata: Metadata = {
+  title: 'المتجر | بهجة ستور',
+  description: 'تصفحي منتجات بهجة ستور من الشنط الهاند ميد، لوحات الكانفس، وإكسسوارات الشعر وارسلي طلبك عبر واتساب.',
+};
+
 export default async function ShopPage({ searchParams }: { searchParams: Promise<ShopSearchParams> }) {
   const params = await searchParams;
   const selectedCategory = Array.isArray(params.category) ? params.category[0] : params.category;
@@ -20,7 +26,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const filteredProducts = products.filter((p) => selectedCollection ? p.collectionSlug === selectedCollection : selectedCategory ? p.categorySlug === selectedCategory : true);
   const active = FILTERS.find((f) => selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all');
 
-  return <SectionShell title="متجر بهجة" subtitle="تصفحي القطع، أضيفي للسلة، وأكملي طلبك عبر واتساب بسهولة.">
+  return <SectionShell title="المتجر" subtitle="تصفحي القطع، أضيفي للسلة، وأكملي طلبك عبر واتساب بسهولة.">
     <div className="mb-6 flex gap-2 overflow-x-auto pb-2">{FILTERS.map((f)=><Link key={f.label} href={f.href} className={`bahja-chip ${active?.label===f.label ? 'bg-bahja-blush/45 border-bahja-rose' : ''}`}>{f.label}</Link>)}</div>
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filteredProducts.map((p)=><ProductCard key={p.slug} product={p} />)}</div>
   </SectionShell>;
