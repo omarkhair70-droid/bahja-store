@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { OrderBagProvider } from '@/components/OrderBagProvider';
+import OrderBagDrawer from '@/components/OrderBagDrawer';
 
 export const metadata: Metadata = {
   title: 'Bahja Store | Handmade Bags, Canvas Art & Hair Accessories',
@@ -17,9 +19,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <OrderBagProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <OrderBagDrawer />
+        </OrderBagProvider>
       </body>
     </html>
   );

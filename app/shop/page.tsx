@@ -27,10 +27,10 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const activeFilter = FILTERS.find((f) => (selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all'));
 
   return (
-    <SectionShell title="Shop All Pieces" subtitle="Curated handmade pieces for a soft-luxury WhatsApp-first boutique experience.">
+    <SectionShell title="Boutique Product Wall" subtitle="A warm editorial shop experience with made-to-order handcrafted pieces.">
       <div className="space-y-10">
         <div className="subtle-panel p-5">
-          <p className="mb-4 text-sm text-bahja-taupe">Filter by story or collection</p>
+          <p className="mb-4 text-sm text-bahja-taupe">Filter by category or collection</p>
           <div className="flex flex-wrap gap-2.5">
             {FILTERS.map((filter) => {
               const isActive = filter.label === activeFilter?.label;
