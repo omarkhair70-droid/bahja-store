@@ -1,6 +1,11 @@
 export type ImageTier = 'heroSafe' | 'featureSafe' | 'cardOnly' | 'containOnly';
 
 const policyMap: Record<string, ImageTier> = {
+  '/images/bahja/editorial/hero-bag.jpg': 'heroSafe',
+  '/images/bahja/editorial/himalayan-bag.jpg': 'heroSafe',
+  '/images/bahja/editorial/chain-bag.jpg': 'heroSafe',
+  '/images/bahja/editorial/custom-art.jpg': 'containOnly',
+  '/images/bahja/editorial/hair-accessories.jpg': 'featureSafe',
   '/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp': 'heroSafe',
   '/images/bahja/bags-chain-thread/chain-thread-bag-soft-sage-lifestyle-01.webp': 'heroSafe',
   '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp': 'heroSafe',

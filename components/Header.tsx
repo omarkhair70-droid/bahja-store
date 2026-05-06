@@ -46,7 +46,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 className={cn(
-                  'whitespace-nowrap rounded-full border px-3 py-1.5 transition',
+                  'whitespace-nowrap rounded-full border px-3 py-1.5 transition shrink-0',
                   isActive
                     ? 'border-bahja-beige bg-bahja-blush/55 text-bahja-brown'
                     : 'border-transparent bg-white/40 hover:border-bahja-beige hover:bg-bahja-cream'
