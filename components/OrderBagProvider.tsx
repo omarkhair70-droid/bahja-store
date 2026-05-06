@@ -22,16 +22,20 @@ const OrderBagContext = createContext<OrderBagContextValue | null>(null);
 export function OrderBagProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<OrderBagItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const raw = localStorage.getItem(ORDER_BAG_STORAGE_KEY);
-    if (!raw) return;
-    try { setItems(JSON.parse(raw)); } catch {}
+    if (raw) {
+      try { setItems(JSON.parse(raw)); } catch {}
+    }
+    setHasLoaded(true);
   }, []);
 
   useEffect(() => {
+    if (!hasLoaded) return;
     localStorage.setItem(ORDER_BAG_STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
+  }, [items, hasLoaded]);
 
   const value = useMemo<OrderBagContextValue>(() => ({
     items,
@@ -47,7 +51,6 @@ export function OrderBagProvider({ children }: { children: React.ReactNode }) {
         copy[idx] = { ...copy[idx], quantity: copy[idx].quantity + quantity, customNote: payload.customNote ?? copy[idx].customNote };
         return copy;
       });
-      setIsOpen(true);
     },
     removeItem: (item) => setItems((prev) => prev.filter((p) => makeItemKey(p) !== makeItemKey(item))),
     updateQuantity: (item, quantity) => setItems((prev) => prev.map((p) => makeItemKey(p) === makeItemKey(item) ? { ...p, quantity: Math.max(1, quantity) } : p)),

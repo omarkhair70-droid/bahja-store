@@ -21,9 +21,9 @@ export default function ProductCard({ product }: { product: Product }) {
         {product.arabicTitle && <p className="text-sm text-bahja-taupe">{product.arabicTitle}</p>}
         <p className="rounded-2xl bg-bahja-cream/80 px-3 py-2 text-sm text-bahja-brown">{product.priceGuide}</p>
         <div className="flex flex-wrap gap-2 sm:gap-3">
-          <AddToBagButton item={bagItem} selectedSize={bag ? 'Medium' : undefined} className="flex-1 rounded-full bg-bahja-brown px-4 py-2 text-sm text-white sm:flex-none" label="Add to Bag" />
-          <Link href={`/shop/${product.slug}`} className="flex-1 rounded-full border border-bahja-taupe px-4 py-2 text-center text-sm text-bahja-brown sm:flex-none">View Details</Link>
-          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="flex-1 px-4 py-2 text-sm sm:flex-none">Ask on WhatsApp</WhatsAppButton>
+          <AddToBagButton item={bagItem} selectedSize={bag ? 'Medium' : undefined} className="flex-1 rounded-full bg-bahja-brown px-4 py-2 text-sm text-white sm:flex-none" label="أضف إلى السلة" />
+          <Link href={`/shop/${product.slug}`} className="flex-1 rounded-full border border-bahja-taupe px-4 py-2 text-center text-sm text-bahja-brown sm:flex-none">عرض التفاصيل</Link>
+          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="flex-1 px-4 py-2 text-sm sm:flex-none">استفسار واتساب</WhatsAppButton>
         </div>
       </div>
     </article>

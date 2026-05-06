@@ -5,8 +5,8 @@ export function getWhatsAppUrl(message: string) {
 }
 
 export const whatsappMessages = {
-  productInquiry: (product: string) => `Hi Bahja Store! I would love to ask about ${product}.`,
+  productInquiry: (product: string) => `مرحبًا بهجة ستور، أود الاستفسار عن القطعة التالية: ${product}`,
   customOrderInquiry:
-    'Hi Bahja Store! I would like to place a custom order and discuss colors, sizes, and finishing details.',
-  generalContact: 'Hi Bahja Store! I would like to ask about your products and ordering process.'
+    'مرحبًا بهجة ستور، أرغب في طلب قطعة مخصصة وأريد مناقشة اللون والمقاس والتشطيب والتفاصيل.',
+  generalContact: 'مرحبًا بهجة ستور، أود الاستفسار عن المنتجات وطريقة الطلب.'
 };
