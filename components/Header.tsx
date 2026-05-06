@@ -22,13 +22,24 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-bahja-beige/60 bg-bahja-ivory/90 backdrop-blur-md">
-      <nav className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-3 px-4 py-3 sm:px-6 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:px-8">
-        <Link href="/" className="justify-self-start text-right text-lg font-semibold leading-tight text-bahja-brown sm:text-xl">
-          بهجة ستور
-          <span className="block text-xs font-normal text-bahja-taupe">Bahja Store</span>
-        </Link>
+      <nav className="mx-auto w-full max-w-6xl px-4 py-2.5 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-2">
+          <Link href="/" className="text-right text-base font-semibold leading-tight text-bahja-brown sm:text-xl">
+            بهجة ستور
+            <span className="block text-[10px] font-normal text-bahja-taupe sm:text-xs">Bahja Store</span>
+          </Link>
 
-        <div className="order-3 flex w-full flex-wrap justify-center gap-2 text-sm text-bahja-brown lg:order-none">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Link href="/cart" className="rounded-full border border-bahja-beige bg-white/80 px-2.5 py-1.5 text-[11px] sm:px-3 sm:py-2 sm:text-sm">
+              السلة ({totalItems})
+            </Link>
+            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)} className="px-3 py-1.5 text-[11px] sm:px-4 sm:py-2 sm:text-sm">
+              واتساب
+            </WhatsAppButton>
+          </div>
+        </div>
+
+        <div className="mt-2 flex gap-1.5 overflow-x-auto pb-1 text-xs text-bahja-brown sm:mt-3 sm:gap-2 sm:text-sm lg:justify-center">
           {links.map(([label, href]) => {
             const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
             return (
@@ -36,25 +47,16 @@ export default function Header() {
                 key={href}
                 href={href}
                 className={cn(
-                  'rounded-full border px-3 py-1.5 transition',
+                  'whitespace-nowrap rounded-full border px-3 py-1.5 transition',
                   isActive
-                    ? 'border-bahja-beige bg-bahja-blush/40 text-bahja-brown'
-                    : 'border-transparent hover:border-bahja-beige hover:bg-bahja-cream'
+                    ? 'border-bahja-beige bg-bahja-blush/45 text-bahja-brown'
+                    : 'border-transparent bg-white/40 hover:border-bahja-beige hover:bg-bahja-cream'
                 )}
               >
                 {label}
               </Link>
             );
           })}
-        </div>
-
-        <div className="justify-self-end flex items-center gap-2">
-          <Link href="/cart" className="rounded-full border border-bahja-beige bg-white/80 px-3 py-2 text-xs sm:text-sm">
-            السلة ({totalItems})
-          </Link>
-          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)} className="px-4 py-2 text-xs sm:text-sm">
-            واتساب
-          </WhatsAppButton>
         </div>
       </nav>
     </header>
