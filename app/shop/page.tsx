@@ -3,6 +3,11 @@ import ProductCard from '@/components/ProductCard';
 import SectionShell from '@/components/SectionShell';
 import { products } from '@/content/bahja-products';
 
+type ShopSearchParams = {
+  category?: string | string[];
+  collection?: string | string[];
+};
+
 const FILTERS = [
   { label: 'All Pieces', href: '/shop', type: 'all', value: '' },
   { label: 'Handmade Bags', href: '/shop?category=handmade-bags', type: 'category', value: 'handmade-bags' },
@@ -14,17 +19,18 @@ const FILTERS = [
 
 const SECTION_ORDER = ['himalayan-thread-bags', 'chain-thread-bags', 'canvas-art', 'hair-accessories'];
 
-export default function ShopPage({ searchParams }: { searchParams: { category?: string; collection?: string } }) {
-  const category = searchParams.category;
-  const collection = searchParams.collection;
+export default async function ShopPage({ searchParams }: { searchParams: Promise<ShopSearchParams> }) {
+  const params = await searchParams;
+  const selectedCategory = Array.isArray(params.category) ? params.category[0] : params.category;
+  const selectedCollection = Array.isArray(params.collection) ? params.collection[0] : params.collection;
 
   const filteredProducts = products.filter((product) => {
-    if (collection) return product.collectionSlug === collection;
-    if (category) return product.categorySlug === category;
+    if (selectedCollection) return product.collectionSlug === selectedCollection;
+    if (selectedCategory) return product.categorySlug === selectedCategory;
     return true;
   });
 
-  const activeFilter = FILTERS.find((f) => (collection ? f.type === 'collection' && f.value === collection : category ? f.type === 'category' && f.value === category : f.type === 'all'));
+  const activeFilter = FILTERS.find((f) => (selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all'));
 
   return (
     <SectionShell title="Shop All Pieces" subtitle="Browse by category or collection, then ask directly on WhatsApp.">
@@ -41,7 +47,7 @@ export default function ShopPage({ searchParams }: { searchParams: { category?: 
         </div>
 
         {SECTION_ORDER.map((sectionSlug) => {
-          const sectionItems = filteredProducts.filter((product) => product.collectionSlug === sectionSlug || (sectionSlug === 'himalayan-thread-bags' && product.categorySlug === 'handmade-bags' && category === 'handmade-bags' && product.collectionSlug === 'himalayan-thread-bags'));
+          const sectionItems = filteredProducts.filter((product) => product.collectionSlug === sectionSlug || (sectionSlug === 'himalayan-thread-bags' && product.categorySlug === 'handmade-bags' && selectedCategory === 'handmade-bags' && product.collectionSlug === 'himalayan-thread-bags'));
           if (sectionItems.length === 0) return null;
           return (
             <section key={sectionSlug}>
