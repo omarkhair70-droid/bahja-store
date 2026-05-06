@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { products } from '@/content/bahja-products';
 import { site } from '@/content/site';
-import { getWhatsAppUrl, whatsappMessages } from '@/lib/whatsapp';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import ProductDetailActions from '@/components/ProductDetailActions';
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -13,8 +12,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = products.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
 
   return (
-    <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-bahja-cream shadow-soft"><Image src={product.image} alt={product.title} fill className="object-cover" /></div>
+    <section className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-bahja-cream shadow-soft"><Image src={product.image} alt={product.title} fill className="object-cover" /><div className="absolute inset-x-4 top-4 w-fit rounded-full bg-bahja-ivory/80 px-3 py-1 text-xs text-bahja-brown">Editorial Piece</div></div>
       <div className="space-y-5">
         <p className="text-sm text-bahja-taupe">{product.collection} • {product.category}</p>
         <div className="space-y-2">
@@ -27,7 +26,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="font-medium text-bahja-brown">{product.priceGuide}</p>
         </div>
         <p className="text-sm leading-relaxed text-bahja-taupe">{site.pricingNote}<br />{site.arabicPricingNote}</p>
-        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="w-full sm:w-auto">Ask about this piece on WhatsApp</WhatsAppButton>
+        <ProductDetailActions product={product} />
       </div>
 
       <div className="space-y-4 lg:col-span-2">
