@@ -3,11 +3,7 @@ import ProductCard from '@/components/ProductCard';
 import SectionShell from '@/components/SectionShell';
 import { products } from '@/content/bahja-products';
 
-type ShopSearchParams = {
-  category?: string | string[];
-  collection?: string | string[];
-};
-
+type ShopSearchParams = { category?: string | string[]; collection?: string | string[] };
 const FILTERS = [
   { label: 'كل القطع', href: '/shop', type: 'all', value: '' },
   { label: 'شنط هاند ميد', href: '/shop?category=handmade-bags', type: 'category', value: 'handmade-bags' },
@@ -17,41 +13,15 @@ const FILTERS = [
   { label: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', type: 'category', value: 'hair-accessories' }
 ] as const;
 
-const SECTION_ORDER = ['himalayan-thread-bags', 'chain-thread-bags', 'canvas-art', 'hair-accessories'];
-
 export default async function ShopPage({ searchParams }: { searchParams: Promise<ShopSearchParams> }) {
   const params = await searchParams;
   const selectedCategory = Array.isArray(params.category) ? params.category[0] : params.category;
   const selectedCollection = Array.isArray(params.collection) ? params.collection[0] : params.collection;
-  const filteredProducts = products.filter((product) => selectedCollection ? product.collectionSlug === selectedCollection : selectedCategory ? product.categorySlug === selectedCategory : true);
-  const activeFilter = FILTERS.find((f) => (selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all'));
+  const filteredProducts = products.filter((p) => selectedCollection ? p.collectionSlug === selectedCollection : selectedCategory ? p.categorySlug === selectedCategory : true);
+  const active = FILTERS.find((f) => selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all');
 
-  return (
-    <SectionShell title="المتجر" subtitle="تصفحي القطع حسب المجموعة، ثم أضيفي ما يعجبكِ إلى السلة أو ارسلي استفساركِ عبر واتساب.">
-      <div className="space-y-10">
-        <div className="subtle-panel p-5">
-          <p className="mb-4 text-sm text-bahja-taupe">تصفية حسب المجموعة أو التصنيف</p>
-          <div className="flex gap-2 overflow-x-auto whitespace-nowrap pb-1">
-            {FILTERS.map((filter) => {
-              const isActive = filter.label === activeFilter?.label;
-              return <Link key={filter.label} href={filter.href} className={`rounded-full border px-4 py-2 text-sm transition ${isActive ? 'border-bahja-beige bg-bahja-blush/40 text-bahja-brown' : 'border-bahja-beige bg-white/80 text-bahja-brown hover:border-bahja-rose hover:bg-bahja-cream'}`}>{filter.label}</Link>;
-            })}
-          </div>
-        </div>
-
-        {SECTION_ORDER.map((sectionSlug) => {
-          const sectionItems = filteredProducts.filter((product) => product.collectionSlug === sectionSlug || (sectionSlug === 'himalayan-thread-bags' && product.categorySlug === 'handmade-bags' && selectedCategory === 'handmade-bags' && product.collectionSlug === 'himalayan-thread-bags'));
-          if (sectionItems.length === 0) return null;
-          return (
-            <section key={sectionSlug} className="space-y-5">
-              <h3 className="text-2xl font-semibold text-bahja-brown sm:text-3xl">{sectionItems[0].collection}</h3>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {sectionItems.map((product) => <ProductCard key={product.slug} product={product} />)}
-              </div>
-            </section>
-          );
-        })}
-      </div>
-    </SectionShell>
-  );
+  return <SectionShell title="متجر بهجة" subtitle="تصفحي القطع، أضيفي للسلة، وأكملي طلبك عبر واتساب بسهولة.">
+    <div className="mb-6 flex gap-2 overflow-x-auto pb-2">{FILTERS.map((f)=><Link key={f.label} href={f.href} className={`bahja-chip ${active?.label===f.label ? 'bg-bahja-blush/45 border-bahja-rose' : ''}`}>{f.label}</Link>)}</div>
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filteredProducts.map((p)=><ProductCard key={p.slug} product={p} />)}</div>
+  </SectionShell>;
 }

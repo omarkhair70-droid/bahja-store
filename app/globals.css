@@ -9,15 +9,12 @@ body {
 }
 
 @layer utilities {
-  .editorial-heading {
-    @apply text-4xl font-semibold leading-tight tracking-tight text-bahja-brown sm:text-5xl lg:text-6xl;
-  }
-
-  .section-heading {
-    @apply text-3xl font-semibold leading-tight tracking-tight text-bahja-brown sm:text-4xl;
-  }
-
-  .subtle-panel {
-    @apply rounded-3xl border border-bahja-beige/70 bg-white/75 shadow-soft backdrop-blur-sm;
-  }
+  .editorial-heading { @apply text-3xl font-semibold leading-tight tracking-tight text-bahja-brown sm:text-5xl; }
+  .section-heading { @apply text-2xl font-semibold leading-tight tracking-tight text-bahja-brown sm:text-4xl; }
+  .section-space { @apply py-10 sm:py-12 lg:py-14; }
+  .subtle-panel { @apply rounded-3xl border border-bahja-beige/70 bg-white/80 shadow-soft backdrop-blur-sm; }
+  .bahja-card { @apply rounded-3xl border border-bahja-beige/70 bg-white/85 shadow-soft overflow-hidden; }
+  .bahja-btn-primary { @apply inline-flex items-center justify-center rounded-full bg-bahja-brown px-4 py-2.5 text-sm text-white transition hover:opacity-90; }
+  .bahja-btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-bahja-beige bg-white/80 px-4 py-2.5 text-sm text-bahja-brown transition hover:bg-bahja-cream; }
+  .bahja-chip { @apply whitespace-nowrap rounded-full border border-bahja-beige bg-white/85 px-3 py-1.5 text-sm text-bahja-brown; }
 }

@@ -1,52 +1,36 @@
 import Link from 'next/link';
 import SectionShell from '@/components/SectionShell';
-import CollectionCard from '@/components/CollectionCard';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { collections, products } from '@/content/bahja-products';
+import { products } from '@/content/bahja-products';
 import { getWhatsAppUrl, whatsappMessages } from '@/lib/whatsapp';
 import ProductImage from '@/components/ProductImage';
+import ProductCard from '@/components/ProductCard';
 
 export default function HomePage() {
-  const hairPreview = products.filter((p) => p.categorySlug === 'hair-accessories').slice(0, 3);
-  const canvasPiece = products.find((p) => p.categorySlug === 'canvas-art');
+  const featured = products.slice(0, 6);
+  const categories = [
+    { title: 'شنط هاند ميد', href: '/shop?category=handmade-bags', image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp', slug: 'handmade-bags' },
+    { title: 'لوحات كانفس', href: '/shop?category=canvas-art', image: '/images/bahja/canvas-art/canvas-arabic-calligraphy-floral-01.webp', slug: 'canvas-art' },
+    { title: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', image: '/images/bahja/hair-accessories/satin-hair-accessories-royal-blue-02.webp', slug: 'hair-accessories' },
+    { title: 'طلبات خاصة', href: '/custom-orders', image: '/images/bahja/bags-chain-thread/chain-thread-bag-soft-sage-lifestyle-01.webp', slug: 'handmade-bags' }
+  ];
 
-  return (
-    <>
-      <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-12">
-        <div className="space-y-4">
-          <p className="text-sm text-bahja-taupe">بهجة ستور <span className="text-xs">Bahja Store</span></p>
-          <h1 className="editorial-heading text-3xl leading-tight sm:text-5xl">قطع هاند ميد تحمل حكاية في كل غرزة</h1>
-          <p className="text-bahja-taupe">شنط هاند ميد، لوحات كانفس، وإكسسوارات شعر مصنوعة بتفاصيل دافئة ولمسة فنية ناعمة.</p>
-          <p className="text-bahja-brown">للغُرز حكايا… وهنا لكل غرزة حكاية</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/collections" className="rounded-full border border-bahja-taupe px-5 py-3">تصفحي المجموعات</Link>
-            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton>
-          </div>
-          <div className="flex flex-wrap gap-2 text-xs text-bahja-taupe">
-            <span className="rounded-full bg-bahja-cream px-3 py-1">صناعة يدوية</span><span className="rounded-full bg-bahja-cream px-3 py-1">تجهيز حسب الطلب</span><span className="rounded-full bg-bahja-cream px-3 py-1">ألوان وتفاصيل مخصصة</span><span className="rounded-full bg-bahja-cream px-3 py-1">من القاهرة</span>
-          </div>
-        </div>
-        <div className="grid grid-cols-5 gap-3">
-          <div className="relative col-span-5 aspect-[4/3] overflow-hidden rounded-[2rem] bg-bahja-cream shadow-soft"><ProductImage src="/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp" alt="شنطة هاند ميد" categorySlug="handmade-bags" usage="hero" /></div>
-          <div className="relative col-span-2 aspect-square overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/hair-accessories/satin-hair-accessories-dusty-pink-01.webp" alt="إكسسوارات شعر" categorySlug="hair-accessories" usage="feature" /></div>
-          <div className="relative col-span-3 aspect-square overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp" alt="شنطة خيوط السلسلة" categorySlug="handmade-bags" usage="feature" /></div>
-        </div>
-      </section>
+  return <>
+    <section className="mx-auto grid max-w-6xl gap-5 px-4 section-space sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div className="space-y-4"><p className="text-sm text-bahja-taupe">بهجة ستور</p><h1 className="editorial-heading">قطع هاند ميد تحمل حكاية في كل غرزة</h1><p className="text-bahja-taupe">شنط هاند ميد، لوحات كانفس، وإكسسوارات شعر مصنوعة بتفاصيل دافئة ولمسة فنية ناعمة.</p><div className="flex flex-wrap gap-3"><Link href="/shop" className="bahja-btn-primary">تصفحي المتجر</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div></div>
+      <div className="relative h-[280px] overflow-hidden rounded-[1.8rem] bg-bahja-cream sm:h-[360px]"><ProductImage src="/images/bahja/bags-chain-thread/chain-thread-bag-soft-sage-lifestyle-01.webp" alt="شنطة هاند ميد" categorySlug="handmade-bags" usage="hero" /></div>
+    </section>
 
-      <SectionShell title="اختاري حكايتكِ">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{[
-          { title: 'شنط هاند ميد', href: '/shop?category=handmade-bags', image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp', desc: 'تشكيلة شنط يدوية بتفاصيل أنيقة ولمسة دافئة.', cta: 'تصفحي الشنط الهاند ميد' },
-          { title: 'لوحات كانفس', href: '/shop?category=canvas-art', image: '/images/bahja/canvas-art/canvas-arabic-calligraphy-floral-01.webp', desc: 'لوحات فنية تجمع بين الخط العربي والزهور.', cta: 'شاهدي لوحات الكانفس' },
-          { title: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', image: '/images/bahja/hair-accessories/satin-hair-accessories-royal-blue-02.webp', desc: 'إكسسوارات ساتان ناعمة لإطلالة أنثوية.', cta: 'تصفحي الإكسسوارات' },
-          { title: 'طلبات خاصة', href: '/custom-orders', image: '/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp', desc: 'اختاري تفاصيلكِ الخاصة لنصنع قطعة مناسبة لكِ.', cta: 'ابدئي طلبًا خاصًا' }
-        ].map((item) => <Link key={item.title} href={item.href} className="group overflow-hidden rounded-3xl border border-bahja-beige bg-white/80 shadow-soft"><div className="relative h-[200px] bg-bahja-cream sm:h-[220px]"><ProductImage src={item.image} alt={item.title} categorySlug={item.href.includes("canvas-art") ? "canvas-art" : item.href.includes("hair-accessories") ? "hair-accessories" : "handmade-bags"} usage="feature" /></div><div className="space-y-1.5 p-3.5"><h3 className="text-base font-semibold text-bahja-brown sm:text-lg">{item.title}</h3><p className="text-sm text-bahja-taupe">{item.desc}</p><p className="text-sm font-medium text-bahja-brown">{item.cta}</p></div></Link>)}
-        </div>
-      </SectionShell>
+    <section className="mx-auto max-w-6xl px-4 pb-4 sm:px-6 lg:px-8"><div className="grid gap-2 sm:grid-cols-4">{['صناعة يدوية', 'تجهيز حسب الطلب', 'ألوان وتفاصيل مخصصة', 'من القاهرة'].map((point)=><div key={point} className="subtle-panel px-4 py-3 text-center text-sm">{point}</div>)}</div></section>
 
-      <SectionShell title="عالم الشنط الهاند ميد"><div className="grid gap-4 md:grid-cols-2"><CollectionCard title={collections[0].arabicTitle} arabicTitle="" href="/shop?collection=himalayan-thread-bags" description="صغير: 300 جنيه • متوسط: 400 جنيه • كبير: 470 جنيه" image="/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp" categorySlug="handmade-bags"/><CollectionCard title={collections[1].arabicTitle} arabicTitle="" href="/shop?collection=chain-thread-bags" description="صغير: 340 جنيه • متوسط: 450 جنيه • كبير: 590 جنيه" image="/images/bahja/bags-chain-thread/chain-thread-bag-silver-grey-closeup-02.webp" categorySlug="handmade-bags"/></div></SectionShell>
-      <SectionShell title="تفاصيل ساتان ناعمة" subtitle="تفاصيل ساتان ناعمة تضيف لمسة أنثوية بسيطة لإطلالتكِ."><div className="grid gap-4 sm:grid-cols-3">{hairPreview.map((p)=><Link key={p.slug} href={`/shop/${p.slug}`} className="overflow-hidden rounded-3xl border border-bahja-beige/70 bg-white/80 shadow-soft"><div className="relative aspect-[4/5]"><ProductImage src={p.image} alt={p.arabicTitle ?? p.title} categorySlug={p.categorySlug} usage="card" /></div><div className="space-y-1 p-4"><p className="font-medium text-bahja-brown">{p.arabicTitle}</p><p className="text-xs text-bahja-taupe">{p.title}</p></div></Link>)}</div></SectionShell>
-      <SectionShell title="لوحات كانفس بروح فنية">{canvasPiece && <Link href={`/shop/${canvasPiece.slug}`} className="grid gap-3 overflow-hidden rounded-3xl border border-bahja-beige bg-white/80 p-4 shadow-soft md:grid-cols-2"><div className="relative h-[220px] rounded-2xl bg-bahja-cream p-3 sm:h-[260px]"><ProductImage src={canvasPiece.image} alt={canvasPiece.arabicTitle ?? canvasPiece.title} categorySlug="canvas-art" usage="feature" /></div><div className="my-auto"><p className="text-lg font-medium text-bahja-brown">{canvasPiece.arabicTitle}</p><p className="mt-2 text-sm text-bahja-taupe">لوحات كانفس بروح فنية دافئة، تجمع بين الخط العربي والزهور والتفاصيل اليدوية.</p></div></Link>}</SectionShell>
-      <SectionShell title="هل لديكِ فكرة لقطعة خاصة؟" subtitle="أرسلي لنا التفاصيل عبر واتساب وسنساعدكِ في اختيار الأنسب."><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.customOrderInquiry)} className="w-full sm:w-auto">اطلبي عبر واتساب</WhatsAppButton></SectionShell>
-    </>
-  );
+    <SectionShell title="أقسام المتجر"><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{categories.map((item)=><Link key={item.title} href={item.href} className="bahja-card"><div className="relative h-40"><ProductImage src={item.image} alt={item.title} categorySlug={item.slug} usage="category" /></div><p className="p-3 text-sm font-semibold">{item.title}</p></Link>)}</div></SectionShell>
+
+    <SectionShell title="قطع مختارة من بهجة"><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{featured.map((p)=><ProductCard key={p.slug} product={p} />)}</div></SectionShell>
+
+    <SectionShell title="دليل أسعار الشنط"><div className="grid gap-4 md:grid-cols-2"><div className="subtle-panel p-5"><h3 className="mb-2 font-semibold">شنط خيط الهيمالايا</h3><p>صغير: 300 جنيه</p><p>متوسط: 400 جنيه</p><p>كبير: 470 جنيه</p></div><div className="subtle-panel p-5"><h3 className="mb-2 font-semibold">شنط خيوط السلسلة</h3><p>صغير: 340 جنيه</p><p>متوسط: 450 جنيه</p><p>كبير: 590 جنيه</p></div></div><p className="mt-4 text-sm text-bahja-taupe">قد تختلف الأسعار حسب التفاصيل والتخصيص وجودة التشطيب لكل قطعة.</p></SectionShell>
+
+    <SectionShell title="طريقة الطلب"><div className="grid gap-3 sm:grid-cols-3">{['اختاري القطعة','أضيفي المقاس والملاحظات','أرسلي الطلب عبر واتساب'].map((s,i)=><div key={s} className="subtle-panel p-4 text-sm"><p className="mb-2 text-xs text-bahja-taupe">{i+1}</p>{s}</div>)}</div></SectionShell>
+    <SectionShell title="الطلبات الخاصة" subtitle="التخصيص متاح في: اللون، المقاس، السلسلة، التشطيب، تفاصيل التصميم."><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.customOrderInquiry)}>ابدئي طلبك الخاص</WhatsAppButton></SectionShell>
+    <SectionShell title="هل لديكِ فكرة لقطعة خاصة؟" subtitle="أرسلي لنا التفاصيل وسنساعدكِ في اختيار الأنسب."><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.customOrderInquiry)}>اطلبي عبر واتساب</WhatsAppButton></SectionShell>
+  </>;
 }
