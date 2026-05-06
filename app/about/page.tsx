@@ -1,5 +1,5 @@
 import SectionShell from '@/components/SectionShell';
 
 export default function AboutPage() {
-  return <SectionShell title="About Bahja Store"><p className="max-w-3xl text-bahja-taupe">Bahja Store creates handmade pieces with love, detail, creativity, and a warm artistic touch. Every bag, canvas, and accessory is crafted to feel personal, soft, and full of story.</p></SectionShell>;
+  return <SectionShell title="قصتنا"><p className="max-w-3xl text-bahja-taupe">بهجة ستور براند هاند ميد يهتم بالتفاصيل الصغيرة والجمال البسيط، نصنع قطعًا دافئة تحمل لمسة فنية وحكاية خاصة في كل غرزة.</p></SectionShell>;
 }

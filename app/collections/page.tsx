@@ -6,35 +6,35 @@ const collectionCards = [
     title: 'شنط خيط الهيمالايا',
     arabicTitle: 'شنط خيط الهيمالايا',
     href: '/shop?collection=himalayan-thread-bags',
-    description: 'Poetic thread textures for women who love crafted quiet luxury.',
+    description: 'تصاميم هيمالايا بتفاصيل دافئة وأناقة ناعمة.',
     image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-teal-gold-chain-01.webp'
   },
   {
     title: 'شنط خيوط السلسلة',
     arabicTitle: 'شنط خيوط السلسلة',
     href: '/shop?collection=chain-thread-bags',
-    description: 'Iconic silhouettes with polished chain accents and couture warmth.',
+    description: 'شنط خيوط السلسلة بتفاصيل عصرية ولمسة أنثوية.',
     image: '/images/bahja/bags-chain-thread/chain-thread-bag-soft-sage-lifestyle-01.webp'
   },
   {
     title: 'لوحات كانفس',
-    arabicTitle: 'فن الكانفس',
+    arabicTitle: 'لوحات كانفس',
     href: '/shop?category=canvas-art',
-    description: 'Canvas scenes with calligraphy soul, floral softness, and heartfelt atmosphere.',
+    description: 'لوحات كانفس بروح فنية تجمع بين الخط العربي والزهور.',
     image: '/images/bahja/canvas-art/canvas-arabic-calligraphy-floral-01.webp'
   },
   {
     title: 'إكسسوارات شعر',
-    arabicTitle: 'اكسسوارات الشعر',
+    arabicTitle: 'إكسسوارات شعر',
     href: '/shop?category=hair-accessories',
-    description: 'Satin softness in blush-forward tones for gifting and graceful styling.',
+    description: 'إكسسوارات شعر ساتان ناعمة لإطلالة يومية رقيقة.',
     image: '/images/bahja/hair-accessories/satin-hair-accessories-dusty-pink-01.webp'
   }
 ];
 
-export default function CollectionsPage() {
+export default function المجموعاتPage() {
   return (
-    <SectionShell title="Collections" subtitle="A lookbook of four handcrafted stories with poetic mood and feminine character.">
+    <SectionShell title="المجموعات" subtitle="تشكيلات بهجة ستور بلمسة يدوية أنيقة.">
       <div className="grid gap-5 md:grid-cols-2">
         {collectionCards.map((c) => (
           <CollectionCard key={c.title} title={c.title} arabicTitle={c.arabicTitle} href={c.href} description={c.description} image={c.image} />
