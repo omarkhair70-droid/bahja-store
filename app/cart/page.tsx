@@ -22,7 +22,7 @@ export default function CartPage() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 className="mb-4 text-3xl font-semibold">السلة</h1>
+      <h1 className="mb-1 text-3xl font-semibold">ملخص السلة</h1><p className="mb-4 text-sm text-bahja-taupe">لا يتم الدفع من خلال الموقع. سيتم تأكيد التوفر والسعر النهائي عبر واتساب.</p>
 
       {items.length === 0 ? (
         <div className="subtle-panel p-6 text-center">
@@ -84,7 +84,7 @@ export default function CartPage() {
             ))}
           </div>
 
-          <aside className="subtle-panel h-fit space-y-3 p-4">
+          <aside className="subtle-panel h-fit space-y-3 p-4"><h2 className="font-semibold">بيانات التواصل</h2>
             <label className="block text-sm">
               الاسم
               <input aria-label="الاسم" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="الاسم" className="mt-1 w-full rounded-xl border border-bahja-beige p-2" />
@@ -104,12 +104,12 @@ export default function CartPage() {
               />
             </label>
             <label className="block text-sm">
-              ملاحظات إضافية
+              ملاحظات الطلب
               <textarea
-                aria-label="ملاحظات إضافية"
+                aria-label="ملاحظات الطلب"
                 value={extraNotes}
                 onChange={(e) => setExtraNotes(e.target.value)}
-                placeholder="ملاحظات إضافية"
+                placeholder="ملاحظات الطلب"
                 className="mt-1 min-h-24 w-full rounded-xl border border-bahja-beige p-2"
               />
             </label>
