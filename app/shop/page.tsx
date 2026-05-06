@@ -9,12 +9,12 @@ type ShopSearchParams = {
 };
 
 const FILTERS = [
-  { label: 'All Pieces', href: '/shop', type: 'all', value: '' },
-  { label: 'Handmade Bags', href: '/shop?category=handmade-bags', type: 'category', value: 'handmade-bags' },
-  { label: 'Himalayan Thread Bags', href: '/shop?collection=himalayan-thread-bags', type: 'collection', value: 'himalayan-thread-bags' },
-  { label: 'Chain Thread Bags', href: '/shop?collection=chain-thread-bags', type: 'collection', value: 'chain-thread-bags' },
-  { label: 'Canvas Art', href: '/shop?category=canvas-art', type: 'category', value: 'canvas-art' },
-  { label: 'Hair Accessories', href: '/shop?category=hair-accessories', type: 'category', value: 'hair-accessories' }
+  { label: 'كل القطع', href: '/shop', type: 'all', value: '' },
+  { label: 'شنط هاند ميد', href: '/shop?category=handmade-bags', type: 'category', value: 'handmade-bags' },
+  { label: 'شنط خيط الهيمالايا', href: '/shop?collection=himalayan-thread-bags', type: 'collection', value: 'himalayan-thread-bags' },
+  { label: 'شنط خيوط السلسلة', href: '/shop?collection=chain-thread-bags', type: 'collection', value: 'chain-thread-bags' },
+  { label: 'لوحات كانفس', href: '/shop?category=canvas-art', type: 'category', value: 'canvas-art' },
+  { label: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', type: 'category', value: 'hair-accessories' }
 ] as const;
 
 const SECTION_ORDER = ['himalayan-thread-bags', 'chain-thread-bags', 'canvas-art', 'hair-accessories'];
@@ -27,10 +27,10 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const activeFilter = FILTERS.find((f) => (selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all'));
 
   return (
-    <SectionShell title="Boutique Product Wall" subtitle="A warm editorial shop experience with made-to-order handcrafted pieces.">
+    <SectionShell title="المتجر" subtitle="تصفحي القطع حسب المجموعة، ثم أضيفي ما يعجبكِ إلى السلة أو ارسلي استفساركِ عبر واتساب.">
       <div className="space-y-10">
         <div className="subtle-panel p-5">
-          <p className="mb-4 text-sm text-bahja-taupe">Filter by category or collection</p>
+          <p className="mb-4 text-sm text-bahja-taupe">تصفية حسب المجموعة أو التصنيف</p>
           <div className="flex flex-wrap gap-2.5">
             {FILTERS.map((filter) => {
               const isActive = filter.label === activeFilter?.label;

@@ -20,20 +20,23 @@ export function makeItemKey(item: Pick<OrderBagItem, 'productSlug' | 'selectedSi
   return `${item.productSlug}::${item.selectedSize ?? 'nosize'}`;
 }
 
-export function buildOrderWhatsAppMessage(items: OrderBagItem[]) {
-  const lines = [
-    'Hello Bahja Store, I would like to order:',
-    ''
-  ];
+const sizeMap: Record<BagSize, string> = { Small: 'صغير', Medium: 'متوسط', Large: 'كبير' };
 
+export function buildOrderWhatsAppMessage(items: OrderBagItem[], customer?: { customerName?: string; customerPhone?: string; customerAddress?: string; extraNotes?: string; }) {
+  const lines = ['مرحبًا بهجة ستور،', 'أرغب في طلب القطع التالية:', ''];
   items.forEach((item, index) => {
-    lines.push(`${index + 1}. ${item.title}`);
-    if (item.selectedSize) lines.push(`Size: ${item.selectedSize}`);
-    lines.push(`Quantity: ${item.quantity}`);
-    if (item.customNote?.trim()) lines.push(`Notes: ${item.customNote.trim()}`);
+    lines.push(`${index + 1}. ${item.arabicTitle ?? item.title}`);
+    if (item.selectedSize) lines.push(`المقاس: ${sizeMap[item.selectedSize]}`);
+    lines.push(`الكمية: ${item.quantity}`);
+    if (item.customNote?.trim()) lines.push(`ملاحظات: ${item.customNote.trim()}`);
     lines.push('');
   });
-
-  lines.push('Could you confirm availability, customization options, final price, and delivery details?');
+  lines.push('بيانات التواصل:');
+  lines.push(`الاسم: ${customer?.customerName ?? ''}`);
+  lines.push(`رقم الهاتف: ${customer?.customerPhone ?? ''}`);
+  lines.push(`المنطقة / العنوان: ${customer?.customerAddress ?? ''}`);
+  lines.push(`ملاحظات إضافية: ${customer?.extraNotes ?? ''}`);
+  lines.push('');
+  lines.push('هل يمكن تأكيد التوفر، خيارات التخصيص، السعر النهائي، ومدة التجهيز؟');
   return lines.join('\n');
 }
