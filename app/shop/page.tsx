@@ -31,7 +31,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
       <div className="space-y-10">
         <div className="subtle-panel p-5">
           <p className="mb-4 text-sm text-bahja-taupe">تصفية حسب المجموعة أو التصنيف</p>
-          <div className="flex flex-wrap gap-2.5 overflow-x-auto pb-1">
+          <div className="flex gap-2 overflow-x-auto whitespace-nowrap pb-1">
             {FILTERS.map((filter) => {
               const isActive = filter.label === activeFilter?.label;
               return <Link key={filter.label} href={filter.href} className={`rounded-full border px-4 py-2 text-sm transition ${isActive ? 'border-bahja-beige bg-bahja-blush/40 text-bahja-brown' : 'border-bahja-beige bg-white/80 text-bahja-brown hover:border-bahja-rose hover:bg-bahja-cream'}`}>{filter.label}</Link>;

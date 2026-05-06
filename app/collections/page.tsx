@@ -35,7 +35,7 @@ const collectionCards = [
 export default function المجموعاتPage() {
   return (
     <SectionShell title="المجموعات" subtitle="تشكيلات بهجة ستور بلمسة يدوية أنيقة.">
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         {collectionCards.map((c) => (
           <CollectionCard key={c.title} title={c.title} arabicTitle={c.arabicTitle} href={c.href} description={c.description} image={c.image} categorySlug={c.href.includes("canvas-art") ? "canvas-art" : c.href.includes("hair-accessories") ? "hair-accessories" : "handmade-bags"} />
         ))}

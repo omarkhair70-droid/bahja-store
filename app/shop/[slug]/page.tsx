@@ -13,9 +13,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = products.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
 
   return (
-    <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-bahja-cream shadow-soft">
-        <ProductImage src={product.image} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" />
+    <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div className="relative h-[300px] overflow-hidden rounded-[1.5rem] bg-bahja-cream p-2 shadow-soft sm:h-[420px]">
+        <ProductImage className={product.categorySlug === 'canvas-art' ? 'object-contain p-2' : ''} src={product.image} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" />
       </div>
       <div className="space-y-4">
         <p className="text-sm text-bahja-taupe">{product.collection}</p>
