@@ -13,8 +13,9 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="space-y-3 p-5">
         <p className="text-xs uppercase tracking-wide text-bahja-taupe">{product.collection}</p>
         <h3 className="text-xl font-semibold text-bahja-brown">{product.title}</h3>
+        {product.arabicTitle && <p className="text-sm text-bahja-taupe">{product.arabicTitle}</p>}
         <p className="text-sm text-bahja-taupe">{product.priceGuide}</p>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link href={`/shop/${product.slug}`} className="rounded-full border border-bahja-taupe px-4 py-2 text-sm text-bahja-brown">View Details</Link>
           <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="px-4 py-2 text-sm">Ask on WhatsApp</WhatsAppButton>
         </div>
