@@ -1,5 +1,6 @@
 import CollectionCard from '@/components/CollectionCard';
 import SectionShell from '@/components/SectionShell';
+import type { Metadata } from 'next';
 
 const collectionCards = [
   {
@@ -31,6 +32,11 @@ const collectionCards = [
     image: '/images/bahja/hair-accessories/satin-hair-accessories-dusty-pink-01.webp'
   }
 ];
+
+export const metadata: Metadata = {
+  title: 'المجموعات | بهجة ستور',
+  description: 'اكتشفي مجموعات بهجة ستور: شنط خيط الهيمالايا، شنط خيوط السلسلة، لوحات كانفس، وإكسسوارات شعر.',
+};
 
 export default function المجموعاتPage() {
   return (

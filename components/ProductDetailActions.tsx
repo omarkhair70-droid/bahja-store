@@ -19,7 +19,7 @@ export default function ProductDetailActions({ product }: { product: Product }) 
       <ProductOptions isBag={bag} size={size} setSize={setSize} quantity={quantity} setQuantity={setQuantity} note={note} setNote={setNote} />
       <div className="flex flex-wrap gap-3">
         <AddToBagButton item={{ productSlug: product.slug, title: product.title, arabicTitle: product.arabicTitle, image: product.image, collection: product.collection, priceGuide: product.priceGuide }} selectedSize={bag ? size : undefined} quantity={quantity} customNote={note} className="rounded-full bg-bahja-brown px-5 py-3 text-sm text-white" label="أضف إلى السلة" />
-        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.arabicTitle ?? product.title))} className="px-5 py-3">استفسار عبر واتساب</WhatsAppButton>
+        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.arabicTitle ?? product.title))} className="px-5 py-3">استفسار واتساب</WhatsAppButton>
       </div>
     </div>
   );

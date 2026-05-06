@@ -5,8 +5,11 @@ export function getWhatsAppUrl(message: string) {
 }
 
 export const whatsappMessages = {
-  productInquiry: (product: string) => `مرحبًا بهجة ستور، أود الاستفسار عن القطعة التالية: ${product}`,
+  productInquiry: (product: string) =>
+    `مرحبًا بهجة ستور،
+أود الاستفسار عن: ${product}
+هل يمكن تأكيد التوفر، السعر النهائي، وخيارات التخصيص؟`,
   customOrderInquiry:
-    'مرحبًا بهجة ستور، أرغب في طلب قطعة مخصصة وأريد مناقشة اللون والمقاس والتشطيب والتفاصيل.',
-  generalContact: 'مرحبًا بهجة ستور، أود الاستفسار عن المنتجات وطريقة الطلب.'
+    'مرحبًا بهجة ستور، أود الاستفسار عن المنتجات والطلبات الخاصة.',
+  generalContact: 'مرحبًا بهجة ستور، أود الاستفسار عن المنتجات والطلبات الخاصة.'
 };
