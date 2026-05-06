@@ -6,18 +6,18 @@ import { getWhatsAppUrl, whatsappMessages } from '@/lib/whatsapp';
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="overflow-hidden rounded-3xl border border-bahja-beige bg-white/70 shadow-soft">
+    <article className="group overflow-hidden rounded-[1.8rem] border border-bahja-beige/70 bg-white/80 shadow-soft transition duration-300 hover:-translate-y-1">
       <div className="relative aspect-[4/5] bg-bahja-cream">
-        <Image src={product.image} alt={product.title} fill className="object-cover" />
+        <Image src={product.image} alt={product.title} fill className="object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
       <div className="space-y-3 p-5">
-        <p className="text-xs uppercase tracking-wide text-bahja-taupe">{product.collection}</p>
-        <h3 className="text-xl font-semibold text-bahja-brown">{product.title}</h3>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-bahja-taupe">{product.collection}</p>
+        <h3 className="text-xl font-semibold leading-snug text-bahja-brown">{product.title}</h3>
         {product.arabicTitle && <p className="text-sm text-bahja-taupe">{product.arabicTitle}</p>}
-        <p className="text-sm text-bahja-taupe">{product.priceGuide}</p>
-        <div className="flex flex-wrap gap-2">
-          <Link href={`/shop/${product.slug}`} className="rounded-full border border-bahja-taupe px-4 py-2 text-sm text-bahja-brown">View Details</Link>
-          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="px-4 py-2 text-sm">Ask on WhatsApp</WhatsAppButton>
+        <p className="rounded-2xl bg-bahja-cream/80 px-3 py-2 text-sm text-bahja-brown">{product.priceGuide}</p>
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          <Link href={`/shop/${product.slug}`} className="flex-1 rounded-full border border-bahja-taupe px-4 py-2 text-center text-sm text-bahja-brown sm:flex-none">View Details</Link>
+          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.title))} className="flex-1 px-4 py-2 text-sm sm:flex-none">Ask on WhatsApp</WhatsAppButton>
         </div>
       </div>
     </article>
