@@ -14,7 +14,7 @@ const FILTERS = [
   { label: 'الكانفس', href: '/shop?category=canvas-art', type: 'category', value: 'canvas-art' }
 ] as const;
 
-const sortOrder: Record<string, number> = { 'chain-thread-bags': 1, 'himalayan-thread-bags': 2, 'hair-accessories': 3, 'canvas-art': 4 };
+const sortOrder: Record<string, number> = { 'himalayan-thread-bags': 1, 'chain-thread-bags': 2, 'hair-accessories': 3, 'canvas-art': 4 };
 
 export const metadata: Metadata = { title: 'المتجر | بهجة ستور', description: 'تصفحي الشنط والإكسسوارات، وأضيفي ما يعجبكِ إلى السلة لإرسال الطلب عبر واتساب.' };
 
@@ -27,8 +27,8 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
     .sort((a, b) => (sortOrder[a.collectionSlug] ?? 99) - (sortOrder[b.collectionSlug] ?? 99));
   const active = FILTERS.find((f) => selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all');
 
-  return <SectionShell title="المتجر" subtitle="اختاري القطعة المناسبة وأضيفيها للسلة لإرسال الطلب عبر واتساب.">
-    <div className="mb-4 flex gap-2 overflow-x-auto pb-2 whitespace-nowrap">{FILTERS.map((f)=><Link key={f.label} href={f.href} className={`bahja-chip ${active?.label===f.label ? 'bg-bahja-blush/45 border-bahja-rose' : ''}`}>{f.label}</Link>)}</div>
+  return <SectionShell title="المتجر" subtitle="اكتشفي الشنط أولًا، ثم الإكسسوارات والكانفس، وأضيفي القطع للسلة لإرسال الطلب عبر واتساب.">
+    <div className="mb-4 flex gap-2 overflow-x-auto pb-2 whitespace-nowrap [&::-webkit-scrollbar]:hidden">{FILTERS.map((f)=><Link key={f.label} href={f.href} className={`bahja-chip ${active?.label===f.label ? 'bg-bahja-blush/45 border-bahja-rose' : ''}`}>{f.label}</Link>)}</div>
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filteredProducts.map((p)=><ProductCard key={p.slug} product={p} />)}</div>
   </SectionShell>;
 }
