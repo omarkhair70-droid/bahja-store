@@ -22,7 +22,7 @@ export default function CartPage() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 className="mb-1 text-3xl font-semibold">ملخص السلة</h1><p className="mb-4 text-sm text-bahja-taupe">لا يتم الدفع من خلال الموقع. سيتم تأكيد التوفر والسعر النهائي عبر واتساب.</p>
+      <h1 className="mb-1 text-2xl font-semibold sm:text-3xl">سلة الطلب</h1><p className="mb-4 text-sm text-bahja-taupe">لا يتم الدفع من خلال الموقع. سيتم تأكيد التوفر والسعر النهائي عبر واتساب.</p>
 
       {items.length === 0 ? (
         <div className="subtle-panel p-6 text-center">
@@ -37,8 +37,8 @@ export default function CartPage() {
           <div className="space-y-3">
             {items.map((item) => (
               <article key={`${item.productSlug}-${item.selectedSize ?? 'x'}`} className="bahja-card p-3">
-                <div className="grid gap-3 sm:grid-cols-[88px_1fr]">
-                  <div className="relative aspect-square overflow-hidden rounded-2xl bg-bahja-cream">
+                <div className="grid grid-cols-[82px_1fr] gap-3 sm:grid-cols-[88px_1fr]">
+                  <div className="relative h-[82px] overflow-hidden rounded-2xl bg-bahja-cream sm:h-[88px]">
                     <ProductImage
                       src={item.image}
                       alt={getProductArabicTitle(item.arabicTitle, item.title)}
@@ -55,17 +55,17 @@ export default function CartPage() {
 
                   <div className="space-y-2">
                     <p className="font-semibold">{getProductArabicTitle(item.arabicTitle, item.title)}</p>
-                    <p className="text-xs text-bahja-taupe">{item.title}</p>
+                    <p className="text-xs text-bahja-taupe sm:block hidden">{item.title}</p>
                     <p className="text-sm text-bahja-taupe">
                       {item.selectedSize ? `المقاس: ${displaySizeAr(item.selectedSize)} • ` : ''}
                       {item.collection}
                     </p>
                     <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">{item.priceGuide}</p>
 
-                    <div className="flex items-center gap-2">
-                      <button aria-label="تقليل الكمية" onClick={() => updateQuantity(item, item.quantity - 1)} className="bahja-btn-secondary">-</button>
+                    <div className="flex items-center gap-1.5">
+                      <button aria-label="تقليل الكمية" onClick={() => updateQuantity(item, item.quantity - 1)} className="bahja-btn-secondary !px-3 !py-1.5">-</button>
                       <span>{item.quantity}</span>
-                      <button aria-label="زيادة الكمية" onClick={() => updateQuantity(item, item.quantity + 1)} className="bahja-btn-secondary">+</button>
+                      <button aria-label="زيادة الكمية" onClick={() => updateQuantity(item, item.quantity + 1)} className="bahja-btn-secondary !px-3 !py-1.5">+</button>
                     </div>
 
                     <textarea
@@ -75,7 +75,7 @@ export default function CartPage() {
                       placeholder="ملاحظة على القطعة"
                       className="w-full rounded-xl border border-bahja-beige p-2 text-sm"
                     />
-                    <button onClick={() => removeItem(item)} className="text-sm text-bahja-taupe underline-offset-2 hover:underline">
+                    <button onClick={() => removeItem(item)} className="text-xs text-bahja-taupe underline-offset-2 hover:underline">
                       حذف القطعة
                     </button>
                   </div>
