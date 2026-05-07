@@ -13,8 +13,8 @@ body {
   .section-heading { @apply text-2xl font-semibold leading-tight tracking-tight text-bahja-brown sm:text-4xl; }
   .section-space { @apply py-7 sm:py-12 lg:py-14; }
   .subtle-panel { @apply rounded-3xl border border-bahja-beige/70 bg-white/80 shadow-soft backdrop-blur-sm; }
-  .bahja-card { @apply rounded-3xl border border-bahja-beige/70 bg-white/85 shadow-soft overflow-hidden; }
-  .bahja-btn-primary { @apply inline-flex items-center justify-center rounded-full bg-bahja-brown px-4 py-2 text-sm text-white transition hover:opacity-90; }
-  .bahja-btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-bahja-beige bg-white/80 px-4 py-2 text-sm text-bahja-brown transition hover:bg-bahja-cream; }
+  .bahja-card { @apply rounded-3xl border border-bahja-beige/70 bg-white/85 shadow-soft overflow-hidden transition duration-200 hover:-translate-y-0.5; }
+  .bahja-btn-primary { @apply inline-flex items-center justify-center rounded-full bg-bahja-brown px-4 py-2 text-sm text-white transition duration-200 hover:opacity-90 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bahja-rose/70; }
+  .bahja-btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-bahja-beige bg-white/80 px-4 py-2 text-sm text-bahja-brown transition duration-200 hover:bg-bahja-cream active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bahja-rose/70; }
   .bahja-chip { @apply whitespace-nowrap rounded-full border border-bahja-beige bg-white/85 px-3 py-1.5 text-sm text-bahja-brown; }
 }

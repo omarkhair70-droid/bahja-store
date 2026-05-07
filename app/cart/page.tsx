@@ -22,7 +22,7 @@ export default function CartPage() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 className="mb-1 text-2xl font-semibold sm:text-3xl">سلة الطلب</h1><p className="mb-4 text-sm text-bahja-taupe">لا يتم الدفع من خلال الموقع. سيتم تأكيد التوفر والسعر النهائي عبر واتساب.</p>
+      <h1 className="mb-1 text-2xl font-semibold sm:text-3xl">سلة الطلب</h1><p className="mb-4 text-sm text-bahja-taupe">لا يتم الدفع عبر الموقع. سيتم تأكيد التوفر والسعر النهائي عبر واتساب.</p>
 
       {items.length === 0 ? (
         <div className="subtle-panel p-6 text-center">
@@ -71,7 +71,7 @@ export default function CartPage() {
                       aria-label="ملاحظة على القطعة"
                       value={item.customNote ?? ''}
                       onChange={(e) => updateNote(item, e.target.value)}
-                      placeholder="ملاحظة على القطعة"
+                      placeholder="اللون أو التفاصيل المطلوبة"
                       className="w-full rounded-xl border border-bahja-beige p-2 text-sm"
                     />
                     <button onClick={() => removeItem(item)} className="text-xs text-bahja-taupe underline-offset-2 hover:underline">
