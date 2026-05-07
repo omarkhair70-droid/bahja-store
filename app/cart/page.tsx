@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import { useOrderBag } from '@/components/OrderBagProvider';
 import ProductImage from '@/components/ProductImage';
 import { buildOrderWhatsAppMessage } from '@/lib/order-bag';
-import { displaySizeAr, getProductArabicTitle } from '@/lib/utils';
+import { displaySizeBilingual, getProductArabicTitle } from '@/lib/utils';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function CartPage() {
@@ -57,7 +57,7 @@ export default function CartPage() {
                     <p className="font-semibold">{getProductArabicTitle(item.arabicTitle, item.title)}</p>
                     <p className="text-xs text-bahja-taupe sm:block hidden">{item.title}</p>
                     <p className="text-sm text-bahja-taupe">
-                      {item.selectedSize ? `المقاس: ${displaySizeAr(item.selectedSize)} • ` : ''}
+                      {item.selectedSize ? `المقاس: ${displaySizeBilingual(item.selectedSize)} • ` : ''}
                       {item.collection}
                     </p>
                     <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">{item.priceGuide}</p>

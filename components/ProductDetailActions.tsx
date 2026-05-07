@@ -15,11 +15,11 @@ export default function ProductDetailActions({ product }: { product: Product }) 
   const [note, setNote] = useState('');
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <ProductOptions isBag={bag} size={size} setSize={setSize} quantity={quantity} setQuantity={setQuantity} note={note} setNote={setNote} />
-      <div className="grid gap-2 sm:flex sm:flex-wrap sm:gap-3">
-        <AddToBagButton item={{ productSlug: product.slug, title: product.title, arabicTitle: product.arabicTitle, image: product.image, collection: product.collection, priceGuide: product.priceGuide }} selectedSize={bag ? size : undefined} quantity={quantity} customNote={note} className="w-full rounded-full bg-bahja-brown px-5 py-3 text-sm text-white sm:w-auto" label="أضف إلى السلة" />
-        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.arabicTitle ?? product.title))} className="w-full px-5 py-3 sm:w-auto">استفسار عبر واتساب</WhatsAppButton>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
+        <AddToBagButton item={{ productSlug: product.slug, title: product.title, arabicTitle: product.arabicTitle, image: product.image, collection: product.collection, priceGuide: product.priceGuide }} selectedSize={bag ? size : undefined} quantity={quantity} customNote={note} className="w-full rounded-full bg-bahja-brown px-5 py-3 text-sm text-white" label="أضيفي إلى السلة" />
+        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(product.arabicTitle ?? product.title))} className="w-full justify-center px-5 py-3">واتساب</WhatsAppButton>
       </div>
     </div>
   );
