@@ -25,8 +25,8 @@ export default function HomePage() {
           <div className="relative -mt-20 p-4 sm:absolute sm:inset-y-0 sm:start-0 sm:mt-0 sm:flex sm:items-center sm:p-8 lg:p-10">
             <div className="max-w-xl space-y-3 rounded-3xl border border-bahja-beige/55 bg-bahja-ivory/92 p-4 backdrop-blur-[1px] sm:p-6">
               <p className="text-xs tracking-[0.2em] text-bahja-taupe">بهجة ستور — حكاية ناعمة تُلبس باليد</p>
-              <h1 className="editorial-heading">شنط هاند ميد بتفاصيل تحكي ذوقكِ</h1>
-              <p className="text-sm leading-7 text-bahja-taupe sm:text-base">قطع يدوية دافئة، تُصنع بهدوء وحب، من أول غرزة لآخر لمسة.</p>
+              <h1 className="editorial-heading">هنا تُنسَج الأناقة بخيوط من الحُب</h1>
+              <p className="text-sm leading-7 text-bahja-taupe sm:text-base">قطع هاند ميد تُصنع بهدوء واهتمام، لتصل إليكِ بتفاصيل دافئة تشبهك.</p>
               <div className="flex flex-wrap gap-2.5"><Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div>
             </div>
           </div>
