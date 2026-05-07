@@ -20,26 +20,24 @@ export function makeItemKey(item: Pick<OrderBagItem, 'productSlug' | 'selectedSi
   return `${item.productSlug}::${item.selectedSize ?? 'nosize'}`;
 }
 
-const sizeMap: Record<BagSize, string> = { Small: 'Small / صغير', Medium: 'Medium / متوسط', Large: 'Large / كبير' };
 const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 const toArabicNumber = (value: number) => String(value).replace(/\d/g, (d) => arabicDigits[Number(d)]);
 
 export function buildOrderWhatsAppMessage(items: OrderBagItem[], customer?: { customerName?: string; customerPhone?: string; customerAddress?: string; extraNotes?: string; }) {
-  const lines = ['مرحبًا بهجة ستور،', 'أرغب في طلب القطع التالية:', ''];
+  const lines = ['طلب جديد من بهجة ستور', ''];
   items.forEach((item, index) => {
     lines.push(`${toArabicNumber(index + 1)}. ${item.arabicTitle ?? item.title}`);
     lines.push(`Product: ${item.title}`);
     if (item.selectedSize) lines.push(`Size: ${item.selectedSize}`);
     lines.push(`Quantity: ${item.quantity}`);
-    if (item.customNote?.trim()) lines.push(`Notes: ${item.customNote.trim()}`);
+    lines.push(`Price guide: ${item.priceGuide}`);
+    lines.push(`Notes: ${item.customNote?.trim() || '-'}`);
     lines.push('');
   });
-  lines.push('بيانات التواصل:');
-  lines.push(`Customer name: ${customer?.customerName ?? ''}`);
+  lines.push('Customer:');
+  lines.push(`Name: ${customer?.customerName ?? ''}`);
   lines.push(`Phone: ${customer?.customerPhone ?? ''}`);
   lines.push(`Location: ${customer?.customerAddress ?? ''}`);
-  lines.push(`Notes: ${customer?.extraNotes ?? ''}`);
-  lines.push('');
-  lines.push('هل يمكن تأكيد التوفر، خيارات التخصيص، السعر النهائي، ومدة التجهيز؟');
+  lines.push(`Extra notes: ${customer?.extraNotes ?? ''}`);
   return lines.join('\n');
 }

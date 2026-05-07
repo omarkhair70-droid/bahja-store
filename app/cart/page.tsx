@@ -26,8 +26,8 @@ export default function CartPage() {
 
       {items.length === 0 ? (
         <div className="subtle-panel p-6 text-center">
-          <p className="mb-1 font-medium">سلة الطلب فارغة حاليًا.</p>
-          <p className="mb-4 text-sm text-bahja-taupe">تصفحي المتجر لاختيار القطع التي أعجبتكِ.</p>
+          <p className="mb-1 font-medium">لا توجد قطع في سلة الطلب بعد.</p>
+          <p className="mb-4 text-sm text-bahja-taupe">اختاري قطعتكِ المفضلة وسنجهزها لكِ بعناية.</p>
           <Link href="/shop" className="bahja-btn-primary">
             تصفحي المتجر
           </Link>
@@ -83,7 +83,7 @@ export default function CartPage() {
             ))}
           </div>
 
-          <aside className="subtle-panel h-fit space-y-3 p-4"><h2 className="font-semibold">بيانات التواصل</h2>
+          <aside className="subtle-panel h-fit space-y-3 p-4"><h2 className="font-semibold">بياناتكِ لإتمام الطلب</h2>
             <label className="block text-sm">
               الاسم
               <input aria-label="الاسم" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="الاسم" className="mt-1 w-full rounded-xl border border-bahja-beige p-2" />
@@ -103,18 +103,18 @@ export default function CartPage() {
               />
             </label>
             <label className="block text-sm">
-              ملاحظات الطلب
+              ملاحظات إضافية
               <textarea
-                aria-label="ملاحظات الطلب"
+                aria-label="ملاحظات إضافية"
                 value={extraNotes}
                 onChange={(e) => setExtraNotes(e.target.value)}
-                placeholder="ملاحظات الطلب"
+                placeholder="ملاحظات إضافية"
                 className="mt-1 min-h-24 w-full rounded-xl border border-bahja-beige p-2"
               />
             </label>
 
             <a href={getWhatsAppUrl(message)} target="_blank" rel="noopener noreferrer" className="bahja-btn-primary w-full">
-              إرسال الطلب عبر واتساب
+              إرسال طلبي عبر واتساب
             </a>
             <Link href="/shop" className="bahja-btn-secondary w-full">متابعة التسوق</Link>
             <button onClick={clearBag} className="bahja-btn-secondary w-full">إفراغ السلة</button>
