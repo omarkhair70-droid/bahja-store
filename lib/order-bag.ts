@@ -20,7 +20,7 @@ export function makeItemKey(item: Pick<OrderBagItem, 'productSlug' | 'selectedSi
   return `${item.productSlug}::${item.selectedSize ?? 'nosize'}`;
 }
 
-const sizeMap: Record<BagSize, string> = { Small: 'صغير', Medium: 'متوسط', Large: 'كبير' };
+const sizeMap: Record<BagSize, string> = { Small: 'Small / صغير', Medium: 'Medium / متوسط', Large: 'Large / كبير' };
 const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 const toArabicNumber = (value: number) => String(value).replace(/\d/g, (d) => arabicDigits[Number(d)]);
 

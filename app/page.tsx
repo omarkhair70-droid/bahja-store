@@ -11,104 +11,52 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="mx-auto grid max-w-6xl items-center gap-4 px-4 pb-5 pt-5 sm:px-6 sm:pb-8 sm:pt-8 lg:grid-cols-[1.05fr_1fr] lg:px-8">
-        <div className="space-y-3 sm:space-y-4">
-          <p className="text-sm text-bahja-taupe">بهجة ستور</p>
-          <h1 className="editorial-heading">شنط هاند ميد بتفاصيل تحكي ذوقكِ</h1>
-          <p className="text-sm leading-7 text-bahja-taupe sm:text-base">اكتشفي شنط بهجة ستور المصنوعة يدويًا بخيوط ناعمة، ألوان دافئة، وتشطيب أنثوي راقٍ.</p>
-          <p className="text-sm text-bahja-rose">للغُرز حكايا… وهنا لكل غرزة حكاية</p>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            <Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link>
-            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton>
+      <section className="mx-auto max-w-6xl px-4 pb-6 pt-4 sm:px-6 lg:px-8">
+        <div className="relative h-[290px] overflow-hidden rounded-[2rem] bg-bahja-cream sm:h-[380px] lg:h-[470px]">
+          <ProductImage src="/images/bahja/editorial/hero-bag.jpg" alt="شنطة يدوية من بهجة ستور" categorySlug="handmade-bags" usage="hero" />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#4f342833] via-[#6f4d3f1f] to-[#f8f1e8e0]" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-xl space-y-3 px-5 sm:px-8 lg:px-10">
+              <h1 className="editorial-heading">شنط هاند ميد بتفاصيل تحكي ذوقكِ</h1>
+              <p className="text-sm leading-7 text-bahja-taupe sm:text-base">قطع يدوية دافئة، تُصنع بهدوء وحب، من أول غرزة لآخر لمسة.</p>
+              <div className="flex flex-wrap gap-2.5"><Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div>
+            </div>
           </div>
         </div>
-        <div className="relative h-[260px] overflow-hidden rounded-[1.8rem] bg-bahja-cream sm:h-[340px] lg:h-[430px]">
-          <ProductImage src="/images/bahja/editorial/hero-bag.jpg" alt="شنطة يدوية من بهجة ستور" categorySlug="handmade-bags" usage="hero" />
-        </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-1 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {['صناعة يدوية', 'تجهيز حسب الطلب', 'ألوان مخصصة', 'من القاهرة'].map((item) => (
-            <p key={item} className="bahja-chip text-center text-xs sm:text-sm">{item}</p>
-          ))}
-        </div>
-      </section>
-
-      <SectionShell title="مجموعات الشنط الرئيسية">
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            {
-              title: 'شنط خيط الهيمالايا',
-              copy: 'نعومة يومية وحضور أنثوي بتفاصيل هادئة تناسب الإطلالات اليومية.',
-              guide: 'الأسعار تبدأ من 300 جنيه',
-              href: '/shop?collection=himalayan-thread-bags',
-              image: '/images/bahja/editorial/himalayan-bag.jpg'
-            },
-            {
-              title: 'شنط خيوط السلسلة',
-              copy: 'طابع بوتيك أنيق بلمسة عصرية وسلاسل معدنية متناسقة.',
-              guide: 'الأسعار تبدأ من 340 جنيه',
-              href: '/shop?collection=chain-thread-bags',
-              image: '/images/bahja/editorial/chain-bag.jpg'
-            }
-          ].map((c) => (
-            <Link key={c.title} href={c.href} className="bahja-card p-3">
-              <div className="relative h-56 rounded-2xl bg-bahja-cream sm:h-64">
-                <ProductImage src={c.image} alt={c.title} categorySlug="handmade-bags" usage="feature" />
-              </div>
-              <div className="space-y-2 p-2">
-                <h3 className="text-xl font-semibold">{c.title}</h3>
-                <p className="text-sm text-bahja-taupe">{c.copy}</p>
-                <p className="text-sm">{c.guide}</p>
-                <span className="bahja-btn-secondary">تسوقي المجموعة</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell title="قطع مختارة من بهجة">
+      <SectionShell title="شنط مميزة" subtitle="اختاري القطعة التي تعكس ذوقكِ واطلبيها مباشرة.">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{featuredBags.map((p) => <ProductCard key={p.slug} product={p} />)}</div>
       </SectionShell>
 
-      <SectionShell title="طريقة الطلب">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {['اختاري القطعة', 'حددي المقاس والتفاصيل', 'أرسلي الطلب عبر واتساب'].map((s, i) => (
-            <div key={s} className="subtle-panel p-4 text-sm">
-              <p className="mb-2 text-xs text-bahja-taupe">{i + 1}</p>
-              {s}
-            </div>
-          ))}
+      <SectionShell title="مجموعات الشنط الرئيسية">
+        <div className="grid gap-4 md:grid-cols-2">
+          {[{title:'شنط خيط الهيمالايا',en:'Himalayan Thread Bags',prices:['Small — 300 EGP','Medium — 400 EGP','Large — 470 EGP'],href:'/shop?collection=himalayan-thread-bags',image:'/images/bahja/editorial/himalayan-bag.jpg'},{title:'شنط خيوط السلسلة',en:'Chain Thread Bags',prices:['Small — 340 EGP','Medium — 450 EGP','Large — 590 EGP'],href:'/shop?collection=chain-thread-bags',image:'/images/bahja/editorial/chain-bag.jpg'}].map((c)=><Link key={c.title} href={c.href} className="bahja-card p-3"><div className="relative h-52 rounded-2xl bg-bahja-cream"><ProductImage src={c.image} alt={c.title} categorySlug="handmade-bags" usage="feature" /></div><div className="space-y-1.5 p-2"><h3 className="text-lg font-semibold">{c.title}</h3><p className="text-xs text-bahja-taupe">{c.en}</p><div className="rounded-xl bg-bahja-cream/70 p-2 text-xs leading-6 sm:text-sm">{c.prices.map((s)=><p key={s}>{s}</p>)}</div></div></Link>)}
         </div>
       </SectionShell>
 
-      <SectionShell title="شنطة بتفاصيلكِ الخاصة" subtitle="اختاري اللون، المقاس، نوع السلسلة، والتشطيب، وسنساعدكِ في تنفيذ قطعة تناسب ذوقكِ.">
-        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.customOrderInquiry)}>ابدئي طلبًا خاصًا</WhatsAppButton>
+      <SectionShell title="قصة بهجة">
+        <p className="max-w-3xl text-sm leading-7 text-bahja-taupe sm:text-base">بهجة بدأت بحب التفاصيل الصغيرة: غرزة متقنة، لون دافئ، وقطعة تعيش طويلًا. نصنع كل منتج بروح هادئة ولمسة أنثوية تشبهكِ، لتكون كل قطعة إضافة ناعمة ليومكِ.</p>
       </SectionShell>
 
-      <SectionShell title="تفاصيل تكمل الحكاية">
+      <SectionShell title="إكسسوارات شعر يدوية" subtitle="تفاصيل خفيفة تكمل إطلالتك.">
         <div className="grid gap-3 sm:grid-cols-2">
-          {[
-            { title: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', image: '/images/bahja/editorial/hair-accessories.jpg', slug: 'hair-accessories' },
-            { title: 'لوحات كانفس حسب الطلب', href: '/shop?category=canvas-art', image: '/images/bahja/editorial/custom-art.jpg', slug: 'canvas-art' }
-          ].map((item) => (
-            <Link key={item.title} href={item.href} className="bahja-card p-3">
-              <div className="relative h-32 rounded-2xl bg-bahja-cream">
-                <ProductImage src={item.image} alt={item.title} categorySlug={item.slug} usage="category" />
-              </div>
-              <p className="pt-3 text-sm font-semibold">{item.title}</p>
-            </Link>
-          ))}
+          <Link href="/shop?category=hair-accessories" className="bahja-card p-3"><div className="relative h-36 rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/editorial/hair-accessories.jpg" alt="إكسسوارات شعر" categorySlug="hair-accessories" usage="category" /></div><p className="pt-3 text-sm font-semibold">اكتشفي الإكسسوارات</p></Link>
+          <Link href="/shop?category=canvas-art" className="bahja-card p-3"><div className="relative h-36 rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/editorial/custom-art.jpg" alt="لوحات كانفس" categorySlug="canvas-art" usage="category" /></div><p className="pt-3 text-sm font-semibold">لوحات كانفس حسب الطلب</p></Link>
         </div>
       </SectionShell>
 
-      <SectionShell title="جاهزة لاختيار قطعتكِ؟">
-        <div className="flex flex-wrap gap-3">
-          <Link href="/shop" className="bahja-btn-primary">تسوقي الآن</Link>
-          <Link href="/cart" className="bahja-btn-secondary">السلة</Link>
-        </div>
+      <SectionShell title="طلبكِ الخاص" subtitle="تريدين شنطة بلون معين؟ أو لوحة كانفس بعبارة تحبينها؟ شاركينا فكرتكِ وننفذها بتفاصيل تناسبكِ.">
+        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.customOrderInquiry)}>ابدئي طلبكِ الخاص</WhatsAppButton>
       </SectionShell>
+
+      <section className="mx-auto mb-8 mt-2 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="rounded-[1.8rem] bg-bahja-blush/55 p-6 text-center sm:p-8">
+          <h2 className="mb-2 text-2xl font-semibold">جاهزة تطلبين؟</h2>
+          <p className="mb-4 text-sm text-bahja-taupe">راسلينا مباشرة وسنساعدكِ في تأكيد الطلب والتفاصيل.</p>
+          <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>راسلينا على واتساب</WhatsAppButton>
+        </div>
+      </section>
     </>
   );
 }

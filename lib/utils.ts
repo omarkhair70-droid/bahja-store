@@ -9,13 +9,34 @@ export function displaySizeAr(size?: string) {
   return size ?? '';
 }
 
-export function formatArabicPriceGuide(text: string) {
+export function displaySizeBilingual(size?: string) {
+  if (!size) return '';
+  return `${size} / ${displaySizeAr(size)}`;
+}
+
+export function formatBilingualPriceGuide(text: string) {
   return text
-    .replace('Small:', 'صغير:')
-    .replace('Medium:', 'متوسط:')
-    .replace('Large:', 'كبير:')
-    .replace('Available by request', 'متاح حسب الطلب')
-    .replaceAll('EGP', 'جنيه');
+    .replaceAll('صغير:', 'Small —')
+    .replaceAll('متوسط:', 'Medium —')
+    .replaceAll('كبير:', 'Large —')
+    .replaceAll('جنيه', 'EGP')
+    .replace('متاح حسب الطلب', 'Made to order');
+}
+
+export function getCollectionLabel(collectionSlug: string) {
+  if (collectionSlug === 'himalayan-thread-bags') return 'شنط خيط الهيمالايا';
+  if (collectionSlug === 'chain-thread-bags') return 'شنط خيوط السلسلة';
+  if (collectionSlug === 'hair-accessories') return 'إكسسوارات شعر يدوية';
+  if (collectionSlug === 'canvas-art') return 'لوحات كانفس';
+  return '';
+}
+
+export function getCollectionEnglish(collectionSlug: string) {
+  if (collectionSlug === 'himalayan-thread-bags') return 'Himalayan Thread Bags';
+  if (collectionSlug === 'chain-thread-bags') return 'Chain Thread Bags';
+  if (collectionSlug === 'hair-accessories') return 'Hair Accessories';
+  if (collectionSlug === 'canvas-art') return 'Canvas Art';
+  return '';
 }
 
 export function getProductArabicTitle(arabicTitle: string | undefined, englishTitle: string) {
