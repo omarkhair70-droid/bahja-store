@@ -28,16 +28,17 @@ export function buildOrderWhatsAppMessage(items: OrderBagItem[], customer?: { cu
   const lines = ['مرحبًا بهجة ستور،', 'أرغب في طلب القطع التالية:', ''];
   items.forEach((item, index) => {
     lines.push(`${toArabicNumber(index + 1)}. ${item.arabicTitle ?? item.title}`);
-    if (item.selectedSize) lines.push(`المقاس: ${sizeMap[item.selectedSize]}`);
-    lines.push(`الكمية: ${toArabicNumber(item.quantity)}`);
-    if (item.customNote?.trim()) lines.push(`ملاحظات: ${item.customNote.trim()}`);
+    lines.push(`Product: ${item.title}`);
+    if (item.selectedSize) lines.push(`Size: ${item.selectedSize}`);
+    lines.push(`Quantity: ${item.quantity}`);
+    if (item.customNote?.trim()) lines.push(`Notes: ${item.customNote.trim()}`);
     lines.push('');
   });
   lines.push('بيانات التواصل:');
-  lines.push(`الاسم: ${customer?.customerName ?? ''}`);
-  lines.push(`رقم الهاتف: ${customer?.customerPhone ?? ''}`);
-  lines.push(`المنطقة / العنوان: ${customer?.customerAddress ?? ''}`);
-  lines.push(`ملاحظات إضافية: ${customer?.extraNotes ?? ''}`);
+  lines.push(`Customer name: ${customer?.customerName ?? ''}`);
+  lines.push(`Phone: ${customer?.customerPhone ?? ''}`);
+  lines.push(`Location: ${customer?.customerAddress ?? ''}`);
+  lines.push(`Notes: ${customer?.extraNotes ?? ''}`);
   lines.push('');
   lines.push('هل يمكن تأكيد التوفر، خيارات التخصيص، السعر النهائي، ومدة التجهيز؟');
   return lines.join('\n');

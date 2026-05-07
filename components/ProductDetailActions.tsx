@@ -20,7 +20,7 @@ export default function ProductDetailActions({ product }: { product: Product }) 
       <ProductOptions isBag={bag} size={size} setSize={setSize} quantity={quantity} setQuantity={setQuantity} note={note} setNote={setNote} />
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
         {!isCanvas ? <AddToBagButton item={{ productSlug: product.slug, title: product.title, arabicTitle: product.arabicTitle, image: product.displayImage ?? product.image, collection: product.collection, priceGuide: product.priceGuide }} selectedSize={bag ? size : undefined} quantity={quantity} customNote={note} className="w-full rounded-full bg-bahja-brown px-5 py-3 text-sm text-white" label={bag ? 'أضيفي إلى السلة' : 'أضيفي الطلب'} /> : null}
-        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(isCanvas ? 'اطلبي لوحة حسب الطلب' : (product.arabicTitle ?? product.title)))} className="w-full justify-center px-5 py-3">{isCanvas ? 'اطلبي لوحة حسب الطلب' : 'واتساب'}</WhatsAppButton>
+        <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(isCanvas ? 'اطلبي لوحة حسب الطلب' : (product.arabicTitle ?? product.title)))} className="w-full justify-center px-5 py-3">{isCanvas ? 'اطلبي عبر واتساب' : 'واتساب'}</WhatsAppButton>
       </div>
     </div>
   );

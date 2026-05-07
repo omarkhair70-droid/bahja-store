@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import { useOrderBag } from '@/components/OrderBagProvider';
 import ProductImage from '@/components/ProductImage';
 import { buildOrderWhatsAppMessage } from '@/lib/order-bag';
-import { displaySizeBilingual, getProductArabicTitle } from '@/lib/utils';
+import { getProductArabicTitle } from '@/lib/utils';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function CartPage() {
@@ -57,10 +57,9 @@ export default function CartPage() {
                     <p className="font-semibold">{getProductArabicTitle(item.arabicTitle, item.title)}</p>
                     <p className="text-xs text-bahja-taupe sm:block hidden">{item.title}</p>
                     <p className="text-sm text-bahja-taupe">
-                      {item.selectedSize ? `المقاس: ${displaySizeBilingual(item.selectedSize)} • ` : ''}
-                      {item.collection}
+                      {item.selectedSize ? `Size: ${item.selectedSize} • ` : ''}Quantity: {item.quantity}
                     </p>
-                    <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">{item.priceGuide}</p>
+                    <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">Price guide: {item.priceGuide}</p>
 
                     <div className="flex items-center gap-1.5">
                       <button aria-label="تقليل الكمية" onClick={() => updateQuantity(item, item.quantity - 1)} className="bahja-btn-secondary !px-3 !py-1.5">-</button>
