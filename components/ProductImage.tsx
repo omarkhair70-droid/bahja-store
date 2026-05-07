@@ -8,14 +8,14 @@ export default function ProductImage({ src, alt, categorySlug, usage, className 
   const isCanvas = categorySlug === 'canvas-art';
   const tier = getImageTier(src);
   const shouldContain = isCanvas || tier === 'containOnly' || (tier === 'cardOnly' && usage === 'detail');
-  const shouldPad = tier === 'cardOnly' || shouldContain;
+  const shouldPad = (tier === 'cardOnly' && usage !== 'card') || (shouldContain && usage !== 'card');
 
   const byUsage = usage === 'hero'
     ? (shouldContain ? 'object-contain p-6' : 'object-cover object-center')
     : usage === 'thumb'
       ? 'object-cover object-center'
       : shouldContain
-        ? 'object-contain p-4'
+        ? (isCanvas && usage === 'card' ? 'object-contain p-2' : 'object-contain p-4')
         : usage === 'detail'
           ? 'object-cover object-center sm:object-cover'
           : 'object-cover object-center';

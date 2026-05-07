@@ -10,9 +10,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = products.find((p) => p.slug === slug);
   if (!product) return notFound();
   const related = products.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
+  const detailImage = product.slug === 'teal-himalayan-thread-bag' ? '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp' : product.image;
 
   return <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:px-8">
-    <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${product.categorySlug === 'canvas-art' ? 'h-[260px] p-4 sm:h-[320px]' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={product.image} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>
+    <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${product.categorySlug === 'canvas-art' ? 'h-[260px] p-4 sm:h-[320px]' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={detailImage} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>
     <div className="space-y-3.5">
       <h1 className="text-2xl font-semibold sm:text-3xl">{getProductArabicTitle(product.arabicTitle, product.title)}</h1>
       <p className="text-sm text-bahja-taupe">{product.title}</p>

@@ -11,7 +11,8 @@ const links = [
   ['الرئيسية', '/'],
   ['الشنط', '/shop?category=handmade-bags'],
   ['إكسسوارات', '/shop?category=hair-accessories'],
-  ['طلب خاص', '/custom-orders']
+  ['طلب خاص', '/custom-orders'],
+  ['تواصل معنا', '/contact']
 ];
 
 export default function Header() {
@@ -26,7 +27,7 @@ export default function Header() {
           <Link href="/cart" className="rounded-full border border-bahja-beige/70 bg-white/75 px-2.5 py-1.5 text-[11px] leading-none sm:px-3 sm:py-2 sm:text-sm">السلة ({totalItems})</Link>
         </div>
 
-        <div className="flex justify-center gap-1 overflow-x-auto whitespace-nowrap text-xs sm:gap-2 sm:text-sm [&::-webkit-scrollbar]:hidden">
+        <div className="flex justify-start gap-1 overflow-x-auto px-1 whitespace-nowrap text-xs sm:justify-center sm:gap-2 sm:px-0 sm:text-sm [&::-webkit-scrollbar]:hidden">
           {links.map(([label, href]) => {
             const activePath = href.split('?')[0];
             const isActive = activePath === '/' ? pathname === '/' : pathname.startsWith(activePath);
