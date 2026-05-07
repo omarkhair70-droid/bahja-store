@@ -5,14 +5,15 @@ export default function CollectionCard({ title, arabicTitle, href, description, 
   const isCanvas = categorySlug === 'canvas-art';
 
   return (
-    <Link href={href} className="overflow-hidden rounded-3xl border border-bahja-beige bg-bahja-cream/70 shadow-soft transition hover:-translate-y-0.5">
+    <Link href={href} className="overflow-hidden rounded-3xl border border-bahja-beige bg-bahja-cream/70 shadow-soft transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bahja-rose/60">
       <div className={`relative bg-bahja-cream ${isCanvas ? 'h-[220px] p-3 sm:h-[250px]' : 'h-[210px] sm:h-[240px]'}`}>
         <ProductImage src={image} alt={title} categorySlug={categorySlug} usage="feature" className={isCanvas ? 'object-contain p-2' : ''} />
       </div>
       <div className="space-y-2 p-4">
         <h3 className="text-lg font-semibold text-bahja-brown sm:text-xl">{arabicTitle || title}</h3>
+        <p className="text-xs text-bahja-taupe">{title}</p>
         <p className="text-sm text-bahja-taupe">{description}</p>
-        <p className="text-sm font-medium text-bahja-brown">تصفحي المجموعة</p>
+        <p className="text-sm font-medium text-bahja-brown">اكتشفي المجموعة</p>
       </div>
     </Link>
   );
