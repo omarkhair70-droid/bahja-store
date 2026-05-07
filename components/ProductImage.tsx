@@ -7,7 +7,7 @@ type Usage = 'card' | 'hero' | 'detail' | 'feature' | 'thumb' | 'category';
 export default function ProductImage({ src, alt, categorySlug, usage, className }: { src: string; alt: string; categorySlug: string; usage: Usage; className?: string; }) {
   const isCanvas = categorySlug === 'canvas-art';
   const tier = getImageTier(src);
-  const shouldContain = isCanvas || tier === 'containOnly';
+  const shouldContain = isCanvas || tier === 'containOnly' || (tier === 'cardOnly' && usage === 'detail');
   const shouldPad = tier === 'cardOnly' || shouldContain;
 
   const byUsage = usage === 'hero'
@@ -17,7 +17,7 @@ export default function ProductImage({ src, alt, categorySlug, usage, className 
       : shouldContain
         ? 'object-contain p-4'
         : usage === 'detail'
-          ? 'object-cover object-center'
+          ? 'object-cover object-center sm:object-cover'
           : 'object-cover object-center';
 
   return <Image src={src} alt={alt} fill className={cn('bg-bahja-cream', byUsage, shouldPad && usage !== 'hero' ? 'p-2' : '', className)} />;

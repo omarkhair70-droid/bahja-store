@@ -7,16 +7,18 @@ import ProductImage from '@/components/ProductImage';
 import ProductCard from '@/components/ProductCard';
 
 export default function HomePage() {
-  const featuredBags = products.filter((p) => p.categorySlug === 'handmade-bags').slice(0, 4);
+  const featuredBags = products.filter((p) => p.categorySlug === 'handmade-bags').sort((a, b) => Number(a.slug.includes('teal')) - Number(b.slug.includes('teal'))).slice(0, 4);
 
   return (
     <>
       <section className="mx-auto max-w-6xl px-4 pb-6 pt-4 sm:px-6 lg:px-8">
-        <div className="relative h-[290px] overflow-hidden rounded-[2rem] bg-bahja-cream sm:h-[380px] lg:h-[470px]">
-          <ProductImage src="/images/bahja/editorial/hero-bag.jpg" alt="شنطة يدوية من بهجة ستور" categorySlug="handmade-bags" usage="hero" />
-          <div className="absolute inset-0 bg-gradient-to-l from-[#4f342833] via-[#6f4d3f1f] to-[#f8f1e8e0]" />
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-xl space-y-3 px-5 sm:px-8 lg:px-10">
+        <div className="relative overflow-hidden rounded-[2rem] bg-bahja-cream">
+          <div className="relative h-[320px] sm:h-[390px] lg:h-[460px]">
+            <ProductImage src="/images/bahja/editorial/hero-bag.jpg" alt="شنطة يدوية من بهجة ستور" categorySlug="handmade-bags" usage="hero" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#f8f1e8f5] via-[#f8f1e89e] to-[#6a4b3a26] sm:bg-gradient-to-l sm:from-[#f8f1e8f2] sm:via-[#f8f1e8cf] sm:to-[#6a4b3a33]" />
+          </div>
+          <div className="relative -mt-20 p-4 sm:absolute sm:inset-y-0 sm:start-0 sm:mt-0 sm:flex sm:items-center sm:p-8 lg:p-10">
+            <div className="max-w-xl space-y-3 rounded-3xl border border-bahja-beige/55 bg-bahja-ivory/92 p-4 backdrop-blur-[1px] sm:p-6">
               <h1 className="editorial-heading">شنط هاند ميد بتفاصيل تحكي ذوقكِ</h1>
               <p className="text-sm leading-7 text-bahja-taupe sm:text-base">قطع يدوية دافئة، تُصنع بهدوء وحب، من أول غرزة لآخر لمسة.</p>
               <div className="flex flex-wrap gap-2.5"><Link href="/shop?category=handmade-bags" className="bahja-btn-primary">تسوقي الشنط</Link><WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)}>اطلبي عبر واتساب</WhatsAppButton></div>

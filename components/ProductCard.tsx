@@ -16,12 +16,12 @@ export default function ProductCard({ product }: { product: Product }) {
         <p className="text-xs text-bahja-taupe">{product.collection} <span className="text-[11px]">· {getCollectionEnglish(product.collectionSlug)}</span></p>
         <h3 className="font-semibold">{getProductArabicTitle(product.arabicTitle, product.title)}</h3>
         <p className="text-[11px] text-bahja-taupe">{product.title}</p>
-        <p className="rounded-xl bg-bahja-cream/70 px-3 py-2 text-xs leading-6 sm:text-sm">{formatBilingualPriceGuide(product.priceGuide)}</p>
+        <p className="min-h-[60px] rounded-xl bg-bahja-cream/70 px-3 py-2 text-xs leading-6 sm:text-sm">{formatBilingualPriceGuide(product.priceGuide)}</p>
         <div className="mt-auto grid gap-2">
           <AddToBagButton item={{ productSlug: product.slug,title: product.title,arabicTitle: product.arabicTitle,image: product.image,collection: product.collection,priceGuide: formatBilingualPriceGuide(product.priceGuide)}} selectedSize={bag ? 'Medium' : undefined} className="bahja-btn-primary w-full" label="أضيفي إلى السلة" />
-          <div className="flex items-center justify-between gap-2 px-1 text-xs sm:text-sm">
-            <Link href={`/shop/${product.slug}`} className="text-bahja-brown underline-offset-2 hover:underline">التفاصيل</Link>
-            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(getProductArabicTitle(product.arabicTitle, product.title)))} className="px-3 py-1.5 text-xs sm:text-sm">واتساب</WhatsAppButton>
+          <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+            <Link href={`/shop/${product.slug}`} className="rounded-full border border-bahja-beige/70 bg-white/70 px-3 py-1.5 text-center text-bahja-brown">التفاصيل</Link>
+            <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.productInquiry(getProductArabicTitle(product.arabicTitle, product.title)))} className="w-full justify-center px-3 py-1.5 text-xs sm:text-sm">واتساب</WhatsAppButton>
           </div>
         </div>
       </div>
