@@ -1,24 +1,13 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { getImageTier } from '@/lib/image-policy';
+import { getMediaPolicy, shouldContainImage, type MediaUsage } from '@/content/bahja-media';
 
-type Usage = 'card' | 'hero' | 'detail' | 'feature' | 'thumb' | 'category';
+export default function ProductImage({ src, alt, categorySlug, usage, className }: { src: string; alt: string; categorySlug: string; usage: MediaUsage; className?: string; }) {
+  const policy = getMediaPolicy(src);
+  const contain = shouldContainImage(src, categorySlug, usage);
+  const avoidLarge = policy.roles.includes('avoidLarge');
+  const usageClass = contain ? 'object-contain p-3' : 'object-cover object-center';
+  const detailSafe = usage === 'detail' && avoidLarge ? 'object-contain p-4 sm:p-6' : '';
 
-export default function ProductImage({ src, alt, categorySlug, usage, className }: { src: string; alt: string; categorySlug: string; usage: Usage; className?: string; }) {
-  const isCanvas = categorySlug === 'canvas-art';
-  const tier = getImageTier(src);
-  const shouldContain = isCanvas || tier === 'containOnly' || (tier === 'cardOnly' && usage === 'detail');
-  const shouldPad = (tier === 'cardOnly' && usage !== 'card') || (shouldContain && usage !== 'card');
-
-  const byUsage = usage === 'hero'
-    ? (shouldContain ? 'object-contain p-6' : 'object-cover object-center')
-    : usage === 'thumb'
-      ? 'object-cover object-center'
-      : shouldContain
-        ? (isCanvas && usage === 'card' ? 'object-contain p-2' : 'object-contain p-4')
-        : usage === 'detail'
-          ? 'object-cover object-center sm:object-cover'
-          : 'object-cover object-center';
-
-  return <Image src={src} alt={alt} fill className={cn('bg-bahja-cream', byUsage, shouldPad && usage !== 'hero' ? 'p-2' : '', className)} />;
+  return <Image src={src} alt={alt} fill className={cn('bg-bahja-cream', usageClass, detailSafe, className)} />;
 }

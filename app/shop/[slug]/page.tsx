@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { products } from '@/content/bahja-products';
 import ProductDetailActions from '@/components/ProductDetailActions';
 import ProductImage from '@/components/ProductImage';
+import { getPreferredProductImage } from '@/content/bahja-media';
 import { formatBilingualPriceGuide, getCollectionEnglish, getCollectionLabel, getProductArabicTitle } from '@/lib/utils';
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -10,19 +11,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = products.find((p) => p.slug === slug);
   if (!product) return notFound();
   const related = products.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
-  const detailImage = product.slug === 'teal-himalayan-thread-bag' ? '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp' : product.image;
+  const detailImage = getPreferredProductImage(product, 'detail');
+  const isBag = (product.cardVariant ?? 'bag') === 'bag';
+  const isCanvas = product.cardVariant === 'canvas-custom';
 
   return <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:px-8">
-    <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${product.categorySlug === 'canvas-art' ? 'h-[260px] p-4 sm:h-[320px]' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={detailImage} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>
+    <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${isCanvas ? 'h-[300px] p-3 sm:h-[380px] sm:p-4' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={detailImage} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>
     <div className="space-y-3.5">
       <h1 className="text-2xl font-semibold sm:text-3xl">{getProductArabicTitle(product.arabicTitle, product.title)}</h1>
       <p className="text-sm text-bahja-taupe">{product.title}</p>
       <p className="text-sm">{getCollectionLabel(product.collectionSlug)} <span className="text-bahja-taupe">· {getCollectionEnglish(product.collectionSlug)}</span></p>
-      <p className="rounded-2xl bg-bahja-cream/80 p-3 text-sm leading-7">{formatBilingualPriceGuide(product.priceGuide)}</p>
-      <p className="text-xs text-bahja-taupe">Small / صغير · Medium / متوسط · Large / كبير</p>
-      <ProductDetailActions product={{ ...product, priceGuide: formatBilingualPriceGuide(product.priceGuide) }} />
+      <p className="rounded-2xl bg-bahja-cream/80 p-3 text-sm leading-7">{isCanvas ? 'Made to order · متاح حسب الطلب' : formatBilingualPriceGuide(product.priceGuide)}</p>
+      {isBag ? <p className="text-xs text-bahja-taupe">Small / صغير · Medium / متوسط · Large / كبير</p> : null}
+      <ProductDetailActions product={{...product, priceGuide: formatBilingualPriceGuide(product.priceGuide)}} />
+      {isCanvas ? <div className="rounded-2xl bg-white/70 p-3 text-sm text-bahja-taupe">Custom phrase / colors / flowers / finishing</div> : <div className="rounded-2xl bg-white/70 p-3 text-sm leading-7"><p className="font-semibold">تفاصيل القطعة</p><ul className="mt-1 list-inside list-disc text-bahja-taupe"><li>صناعة يدوية</li><li>تجهيز حسب الطلب</li><li>يمكن تخصيص اللون والتشطيب حسب المتاح</li></ul><p className="mt-2 text-xs">قد تختلف الأسعار حسب التفاصيل والتخصيص وجودة التشطيب.</p></div>}
       <p className="text-sm leading-7 text-bahja-taupe">{product.description}</p>
     </div>
-    <div className="space-y-3 lg:col-span-2"><h2 className="text-xl font-semibold">منتجات مشابهة</h2><div className="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">{related.map((item)=><Link key={item.slug} href={`/shop/${item.slug}`} className="bahja-card min-w-[200px] sm:min-w-0"><div className="relative h-36 bg-bahja-cream"><ProductImage src={item.image} alt={getProductArabicTitle(item.arabicTitle, item.title)} categorySlug={item.categorySlug} usage="card" /></div><div className="space-y-1 p-3"><p className="text-sm font-medium">{getProductArabicTitle(item.arabicTitle, item.title)}</p><p className="text-[11px] text-bahja-taupe">{item.title}</p></div></Link>)}</div></div>
+    <div className="space-y-3 lg:col-span-2"><h2 className="text-xl font-semibold">منتجات مشابهة</h2><div className="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">{related.map((item)=><Link key={item.slug} href={`/shop/${item.slug}`} className="bahja-card min-w-[200px] sm:min-w-0"><div className="relative h-36 bg-bahja-cream"><ProductImage src={getPreferredProductImage(item, 'card')} alt={getProductArabicTitle(item.arabicTitle, item.title)} categorySlug={item.categorySlug} usage="card" /></div><div className="space-y-1 p-3"><p className="text-sm font-medium">{getProductArabicTitle(item.arabicTitle, item.title)}</p><p className="text-[11px] text-bahja-taupe">{item.title}</p></div></Link>)}</div></div>
   </section>;
 }
