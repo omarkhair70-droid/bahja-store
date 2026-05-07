@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useOrderBag } from './OrderBagProvider';
 import { buildOrderWhatsAppMessage } from '@/lib/order-bag';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
+import { displaySizeBilingual } from '@/lib/utils';
 
 export default function OrderBagDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, updateNote, totalItems } = useOrderBag();
@@ -20,7 +21,7 @@ export default function OrderBagDrawer() {
             <div key={`${item.productSlug}-${item.selectedSize ?? 'x'}`} className="rounded-2xl border border-bahja-beige/70 bg-white/80 p-3">
               <div className="flex gap-3">
                 <div className="relative h-16 w-16 overflow-hidden rounded-xl"><Image src={item.image} alt={item.title} fill className="object-cover" /></div>
-                <div className="flex-1"><p className="text-sm font-medium">{item.title}</p>{item.selectedSize && <p className="text-xs text-bahja-taupe">Size: {item.selectedSize}</p>}</div>
+                <div className="flex-1"><p className="text-sm font-medium">{item.title}</p>{item.selectedSize && <p className="text-xs text-bahja-taupe">Size: {displaySizeBilingual(item.selectedSize)}</p>}</div>
                 <button onClick={() => removeItem(item)} className="text-xs text-bahja-terracotta">Remove</button>
               </div>
               <div className="mt-2 flex items-center gap-2"><button onClick={() => updateQuantity(item, item.quantity - 1)} className="rounded-full border px-2">-</button><span>{item.quantity}</span><button onClick={() => updateQuantity(item, item.quantity + 1)} className="rounded-full border px-2">+</button></div>
