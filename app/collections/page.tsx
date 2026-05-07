@@ -3,8 +3,8 @@ import SectionShell from '@/components/SectionShell';
 import type { Metadata } from 'next';
 
 const topCollections = [
-  { title: 'شنط خيط الهيمالايا', href: '/shop?collection=himalayan-thread-bags', description: 'تصاميم هادئة بتفاصيل يدوية دقيقة.', image: '/images/bahja/bags-himalayan-thread/himalayan-thread-bag-light-grey-gold-chain-03.webp', slug: 'handmade-bags' },
-  { title: 'شنط خيوط السلسلة', href: '/shop?collection=chain-thread-bags', description: 'ستايل أنثوي فاخر بطابع بوتيك.', image: '/images/bahja/bags-chain-thread/chain-thread-bag-soft-sage-lifestyle-01.webp', slug: 'handmade-bags' }
+  { title: 'شنط خيط الهيمالايا', href: '/shop?collection=himalayan-thread-bags', description: 'تصاميم هادئة بتفاصيل يدوية دقيقة.', image: '/images/bahja/redesigned/light-grey-himalayan/light-grey-himalayan-thread-bag-card.png', slug: 'handmade-bags' },
+  { title: 'شنط خيوط السلسلة', href: '/shop?collection=chain-thread-bags', description: 'ستايل أنثوي فاخر بطابع بوتيك.', image: '/images/bahja/redesigned/soft-sage-chain/soft-sage-chain-thread-bag-card.png', slug: 'handmade-bags' }
 ];
 const secondary = [
   { title: 'إكسسوارات شعر', href: '/shop?category=hair-accessories', description: 'تفاصيل ناعمة تكمل الإطلالة.', image: '/images/bahja/hair-accessories/satin-hair-accessories-dusty-pink-01.webp', slug: 'hair-accessories' },
