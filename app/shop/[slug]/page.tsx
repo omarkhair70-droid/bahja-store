@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { products } from '@/content/bahja-products';
 import ProductDetailActions from '@/components/ProductDetailActions';
 import ProductImage from '@/components/ProductImage';
+import ProductDetailGallery from '@/components/ProductDetailGallery';
 import { getPreferredProductImage } from '@/content/bahja-media';
 import { formatBilingualPriceGuide, getCollectionEnglish, getCollectionLabel, getProductArabicTitle } from '@/lib/utils';
 
@@ -17,7 +18,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const isAccessory = product.cardVariant === 'accessory';
 
   return <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:px-8">
-    <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${isCanvas ? 'h-[300px] p-3 sm:h-[380px] sm:p-4' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={detailImage} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>
+    <ProductDetailGallery detailImage={detailImage} gallery={product.gallery} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} isCanvas={isCanvas} />
     <div className="space-y-3.5">
       <h1 className="text-2xl font-semibold sm:text-3xl">{getProductArabicTitle(product.arabicTitle, product.title)}</h1>
       <p className="text-sm text-bahja-taupe">{product.title}</p>
