@@ -4,18 +4,29 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { OrderBagProvider } from '@/components/OrderBagProvider';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'بهجة ستور | شنط هاند ميد وإكسسوارات شعر ولوحات كانفس',
   description:
     'بهجة ستور يقدم قطع هاند ميد أنثوية تشمل شنط خيط الهيمالايا، شنط خيوط السلسلة، لوحات كانفس، وإكسسوارات شعر بتفاصيل دافئة ولمسة فنية في القاهرة.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }]
+  },
   openGraph: {
     title: 'بهجة ستور | شنط هاند ميد وإكسسوارات شعر ولوحات كانفس',
     description:
       'بهجة ستور يقدم قطع هاند ميد أنثوية تشمل شنط خيط الهيمالايا، شنط خيوط السلسلة، لوحات كانفس، وإكسسوارات شعر بتفاصيل دافئة ولمسة فنية في القاهرة.',
     images: [
       {
-        url: '/images/bahja/bags-chain-thread/chain-thread-bag-black-gold-chain-03.webp',
-        alt: 'شنطة خيوط سلسلة باللون الأسود وسلسلة ذهبية',
+        url: '/images/bahja/brand/bahja-og-image.jpg',
+        alt: 'Bahja Store Open Graph Image',
       },
     ],
     locale: 'ar_EG',

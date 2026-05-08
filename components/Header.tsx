@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import WhatsAppButton from './WhatsAppButton';
@@ -27,7 +28,16 @@ export default function Header() {
             <WhatsAppButton href={getWhatsAppUrl(whatsappMessages.generalContact)} className="px-2.5 py-1.5 text-[11px] leading-none sm:text-sm">واتساب <span className="text-[10px] text-bahja-taupe">WhatsApp</span></WhatsAppButton>
             <Link href="/cart" className="rounded-full border border-bahja-beige/70 bg-white/75 px-2.5 py-1.5 text-[11px] leading-none sm:text-sm">السلة <span className="text-[10px] text-bahja-taupe">Cart</span> ({totalItems})</Link>
           </div>
-          <Link href="/" className="text-center text-base font-semibold leading-tight text-bahja-brown sm:text-xl">بهجة ستور<span className="block text-[10px] font-normal text-bahja-taupe">Bahja Store</span></Link>
+          <Link href="/" aria-label="Bahja Store Home" className="mx-auto block w-fit">
+            <Image
+              src="/images/bahja/brand/bahja-logo-horizontal.png"
+              alt="بهجة ستور | Bahja Store"
+              width={220}
+              height={60}
+              priority
+              className="h-10 w-auto sm:h-12"
+            />
+          </Link>
           <div />
         </div>
 
