@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { site } from '@/content/site';
 
 export default function Footer() {
   return (
@@ -26,6 +27,24 @@ export default function Footer() {
             <span className="text-xs text-bahja-taupe">Handmade with care</span>
           </div>
           <p>واتساب</p>
+          <div className="inline-flex flex-wrap items-center gap-2 rounded-2xl border border-bahja-beige/70 bg-white/70 p-2 shadow-sm md:justify-end">
+            <a
+              href={site.social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-bahja-beige bg-white/80 px-4 py-2 text-sm font-medium text-bahja-brown transition-colors hover:border-bahja-taupe hover:text-bahja-taupe"
+            >
+              Facebook
+            </a>
+            <a
+              href={site.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-bahja-beige bg-white/80 px-4 py-2 text-sm font-medium text-bahja-brown transition-colors hover:border-bahja-taupe hover:text-bahja-taupe"
+            >
+              Instagram
+            </a>
+          </div>
           <p className="text-bahja-taupe">المقطم – الهضبة الوسطى، القاهرة، مصر</p>
         </div>
       </div>
