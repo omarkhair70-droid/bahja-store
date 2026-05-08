@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import SectionShell from '@/components/SectionShell';
 import WhatsAppButton from '@/components/WhatsAppButton';
@@ -23,7 +24,14 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#f8f1e8f7] via-[#f8f1e8cb] to-[#6a4b3a1f] sm:bg-gradient-to-l sm:from-[#f8f1e8f3] sm:via-[#f8f1e8d1] sm:to-[#6a4b3a2f]" />
           </div>
           <div className="relative -mt-24 p-4 sm:absolute sm:inset-y-0 sm:start-0 sm:mt-0 sm:flex sm:max-w-2xl sm:items-center sm:p-8 lg:p-10">
-            <div className="space-y-4 rounded-3xl border border-bahja-beige/60 bg-bahja-ivory/92 p-5 backdrop-blur-[1px] sm:p-6">
+            <div className="relative space-y-4 rounded-3xl border border-bahja-beige/60 bg-bahja-ivory/92 p-5 backdrop-blur-[1px] sm:p-6">
+              <Image
+                src="/images/bahja/brand/bahja-logo-stamp.png"
+                alt="Bahja decorative stamp"
+                width={84}
+                height={84}
+                className="pointer-events-none absolute -start-2 -top-2 h-12 w-12 opacity-25 sm:h-14 sm:w-14"
+              />
               <p className="text-[11px] tracking-[0.22em] text-bahja-taupe sm:text-xs">بهجة ستور — لمسة هاند ميد دافئة</p>
               <h1 className="editorial-heading max-w-[14ch]">هنا تُنسَج الأناقة بخيوط من الحُب</h1>
               <p className="max-w-[36ch] text-sm leading-7 text-bahja-taupe sm:text-base">قطع هاند ميد تُصنع بهدوء واهتمام، لتصل إليكِ بتفاصيل دافئة تشبهك.</p>
