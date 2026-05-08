@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import ProductCard from '@/components/ProductCard';
 import SectionShell from '@/components/SectionShell';
-import { products } from '@/content/bahja-products';
+import { publicProducts } from '@/content/bahja-products';
 
 type ShopSearchParams = { category?: string | string[]; collection?: string | string[] };
 const FILTERS = [
@@ -18,7 +18,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const params = await searchParams;
   const selectedCategory = Array.isArray(params.category) ? params.category[0] : params.category;
   const selectedCollection = Array.isArray(params.collection) ? params.collection[0] : params.collection;
-  const filteredProducts = products.filter((p) => selectedCollection ? p.collectionSlug === selectedCollection : selectedCategory ? p.categorySlug === selectedCategory : true);
+  const filteredProducts = publicProducts.filter((p) => selectedCollection ? p.collectionSlug === selectedCollection : selectedCategory ? p.categorySlug === selectedCategory : true);
   const active = FILTERS.find((f) => selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all');
 
   return <SectionShell label="اختاري حكايتك" title="المتجر" subtitle="قطع هاند ميد مصممة بهدوء. اختاري المجموعة المناسبة ثم أرسلي طلبكِ عبر واتساب.">

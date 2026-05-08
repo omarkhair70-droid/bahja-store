@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SectionShell from '@/components/SectionShell';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { products } from '@/content/bahja-products';
+import { publicProducts } from '@/content/bahja-products';
 import { getWhatsAppUrl, whatsappMessages } from '@/lib/whatsapp';
 import ProductImage from '@/components/ProductImage';
 import ProductCard from '@/components/ProductCard';
@@ -9,7 +9,7 @@ import ProductCard from '@/components/ProductCard';
 const trustChips = ['صناعة يدوية', 'تجهيز حسب الطلب', 'ألوان حسب المتاح', 'من القاهرة'];
 
 export default function HomePage() {
-  const featuredBags = products
+  const featuredBags = publicProducts
     .filter((p) => p.categorySlug === 'handmade-bags')
     .sort((a, b) => (a.displayPriority ?? 99) - (b.displayPriority ?? 99))
     .slice(0, 4);
