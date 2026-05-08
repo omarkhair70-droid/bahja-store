@@ -1,3 +1,5 @@
+import { site } from '@/content/site';
+
 export default function Footer() {
   return (
     <footer className="mt-16 border-t border-bahja-beige/70 bg-bahja-cream/70">
@@ -9,6 +11,24 @@ export default function Footer() {
         <div className="space-y-2 md:text-right">
           <p>واتساب</p>
           <p className="text-bahja-taupe">المقطم – الهضبة الوسطى، القاهرة، مصر</p>
+          <div className="flex flex-wrap gap-2 md:justify-end">
+            <a
+              href={site.social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-bahja-beige bg-white/70 px-3 py-1 text-xs font-medium text-bahja-brown transition hover:border-bahja-taupe hover:text-bahja-taupe"
+            >
+              Facebook · فيسبوك
+            </a>
+            <a
+              href={site.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-bahja-beige bg-white/70 px-3 py-1 text-xs font-medium text-bahja-brown transition hover:border-bahja-taupe hover:text-bahja-taupe"
+            >
+              Instagram · إنستجرام
+            </a>
+          </div>
         </div>
       </div>
     </footer>
