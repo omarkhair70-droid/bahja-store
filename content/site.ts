@@ -8,5 +8,9 @@ export const site = {
   locationAr: 'المقطم – الهضبة الوسطى، القاهرة، مصر',
   pricingNote:
     'Prices may vary depending on design details, customization, and the finishing quality of each piece.',
-  arabicPricingNote: 'قد تختلف الأسعار حسب التفاصيل والتخصيص وجودة التشطيب لكل قطعة.'
+  arabicPricingNote: 'قد تختلف الأسعار حسب التفاصيل والتخصيص وجودة التشطيب لكل قطعة.',
+  social: {
+    facebook: 'https://www.facebook.com/share/1BB25JCxn1/',
+    instagram: 'https://www.instagram.com/bahja.store99?igsh=MW1iM2dlZHN4dGc5ZQ=='
+  }
 };

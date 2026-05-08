@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { site } from '@/content/site';
 
 export default function Footer() {
   return (
@@ -26,6 +27,14 @@ export default function Footer() {
             <span className="text-xs text-bahja-taupe">Handmade with care</span>
           </div>
           <p>واتساب</p>
+          <div className="flex items-center gap-3 text-sm md:justify-end">
+            <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+              Facebook
+            </a>
+            <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+              Instagram
+            </a>
+          </div>
           <p className="text-bahja-taupe">المقطم – الهضبة الوسطى، القاهرة، مصر</p>
         </div>
       </div>
