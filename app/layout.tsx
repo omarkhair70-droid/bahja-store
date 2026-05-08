@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { OrderBagProvider } from '@/components/OrderBagProvider';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bahja-store.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
