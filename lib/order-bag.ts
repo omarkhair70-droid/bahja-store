@@ -27,17 +27,17 @@ export function buildOrderWhatsAppMessage(items: OrderBagItem[], customer?: { cu
   const lines = ['طلب جديد من بهجة ستور', ''];
   items.forEach((item, index) => {
     lines.push(`${toArabicNumber(index + 1)}. ${item.arabicTitle ?? item.title}`);
-    lines.push(`Product: ${item.title}`);
-    if (item.selectedSize) lines.push(`Size: ${item.selectedSize}`);
-    lines.push(`Quantity: ${item.quantity}`);
-    lines.push(`Price guide: ${item.priceGuide}`);
-    lines.push(`Notes: ${item.customNote?.trim() || '-'}`);
+    lines.push(`الاسم بالإنجليزية: ${item.title}`);
+    if (item.selectedSize) lines.push(`المقاس: ${item.selectedSize}`);
+    lines.push(`الكمية: ${item.quantity}`);
+    lines.push(`السعر الاسترشادي: ${item.priceGuide}`);
+    lines.push(`ملاحظات القطعة: ${item.customNote?.trim() || '-'}`);
     lines.push('');
   });
-  lines.push('Customer:');
-  lines.push(`Name: ${customer?.customerName ?? ''}`);
-  lines.push(`Phone: ${customer?.customerPhone ?? ''}`);
-  lines.push(`Location: ${customer?.customerAddress ?? ''}`);
-  lines.push(`Extra notes: ${customer?.extraNotes ?? ''}`);
+  lines.push('بيانات العميلة:');
+  lines.push(`الاسم: ${customer?.customerName ?? ''}`);
+  lines.push(`الهاتف: ${customer?.customerPhone ?? ''}`);
+  lines.push(`المنطقة / العنوان: ${customer?.customerAddress ?? ''}`);
+  lines.push(`ملاحظات إضافية: ${customer?.extraNotes ?? ''}`);
   return lines.join('\n');
 }

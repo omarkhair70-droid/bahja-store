@@ -57,9 +57,9 @@ export default function CartPage() {
                     <p className="font-semibold">{getProductArabicTitle(item.arabicTitle, item.title)}</p>
                     <p className="text-xs text-bahja-taupe sm:block hidden">{item.title}</p>
                     <p className="text-sm text-bahja-taupe">
-                      {item.selectedSize ? `Size: ${displaySizeBilingual(item.selectedSize)} • ` : ''}Quantity: {item.quantity}
+                      {item.selectedSize ? `المقاس: ${displaySizeBilingual(item.selectedSize)} • ` : ''}الكمية: {item.quantity}
                     </p>
-                    <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">Price guide: {item.priceGuide}</p>
+                    <p className="rounded-xl bg-bahja-cream/80 p-2 text-sm">السعر الاسترشادي: {item.priceGuide}</p>
 
                     <div className="flex items-center gap-1.5">
                       <button aria-label="تقليل الكمية" onClick={() => updateQuantity(item, item.quantity - 1)} className="bahja-btn-secondary !px-3 !py-1.5">-</button>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { products } from '@/content/bahja-products';
+import { publicProducts } from '@/content/bahja-products';
 import ProductDetailActions from '@/components/ProductDetailActions';
 import ProductImage from '@/components/ProductImage';
 import { getPreferredProductImage } from '@/content/bahja-media';
@@ -8,9 +8,9 @@ import { formatBilingualPriceGuide, getCollectionEnglish, getCollectionLabel, ge
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = publicProducts.find((p) => p.slug === slug);
   if (!product) return notFound();
-  const related = products.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
+  const related = publicProducts.filter((p) => p.collectionSlug === product.collectionSlug && p.slug !== slug).slice(0, 3);
   const detailImage = getPreferredProductImage(product, 'detail');
   const isBag = (product.cardVariant ?? 'bag') === 'bag';
   const isCanvas = product.cardVariant === 'canvas-custom';
