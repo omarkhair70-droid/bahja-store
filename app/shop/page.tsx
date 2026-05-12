@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import ProductCard from '@/components/ProductCard';
+import ProductImage from '@/components/ProductImage';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import { getWhatsAppUrl } from '@/lib/whatsapp';
 import SectionShell from '@/components/SectionShell';
 import { publicProducts } from '@/content/bahja-products';
 
@@ -19,11 +22,18 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const params = await searchParams;
   const selectedCategory = Array.isArray(params.category) ? params.category[0] : params.category;
   const selectedCollection = Array.isArray(params.collection) ? params.collection[0] : params.collection;
+  const elegantClutchVariants = [
+    { colorEn: 'Navy', image: '/images/bahja/elegant-clutch/01-elegant-clutch-navy-front.webp', message: 'مرحبًا، أريد الاستفسار عن Elegant Clutch باللون الكحلي.' },
+    { colorEn: 'Black', image: '/images/bahja/elegant-clutch/02-elegant-clutch-black-front.webp', message: 'مرحبًا، أريد الاستفسار عن Elegant Clutch باللون الأسود.' },
+    { colorEn: 'Wine', image: '/images/bahja/elegant-clutch/03-elegant-clutch-wine-front.webp', message: 'مرحبًا، أريد الاستفسار عن Elegant Clutch باللون النبيتي.' },
+    { colorEn: 'Teal', image: '/images/bahja/elegant-clutch/13-elegant-clutch-teal-front.webp', message: 'مرحبًا، أريد الاستفسار عن Elegant Clutch باللون التركواز.' }
+  ] as const;
+  const isElegantClutchCollection = selectedCollection === 'elegant-clutch';
   const filteredProducts = publicProducts.filter((p) => selectedCollection ? p.collectionSlug === selectedCollection : selectedCategory ? p.categorySlug === selectedCategory : true);
   const active = FILTERS.find((f) => selectedCollection ? f.type === 'collection' && f.value === selectedCollection : selectedCategory ? f.type === 'category' && f.value === selectedCategory : f.type === 'all');
 
   return <SectionShell label="اختاري حكايتك" title="المتجر" subtitle="قطع هاند ميد مصممة بهدوء. اختاري المجموعة المناسبة ثم أرسلي طلبكِ عبر واتساب.">
     <div className="mb-6 -mx-1 flex gap-2 overflow-x-auto px-1 pb-2 whitespace-nowrap [direction:rtl] [&::-webkit-scrollbar]:hidden">{FILTERS.map((f)=><Link key={f.label} href={f.href} className={`shrink-0 rounded-full border px-3.5 py-2 text-xs transition sm:text-sm ${active?.label===f.label ? 'border-bahja-rose/40 bg-bahja-blush/45 text-bahja-brown' : 'border-bahja-beige/70 bg-white/65 text-bahja-taupe'}`}><span>{f.label}</span><span className="ms-1 text-[10px]">{f.sub}</span></Link>)}</div>
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filteredProducts.map((p)=><ProductCard key={p.slug} product={p} />)}</div>
+    {isElegantClutchCollection ? <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{elegantClutchVariants.map((variant)=><article key={variant.colorEn} className="bahja-card flex h-full flex-col border-bahja-beige/50 bg-white/80"><div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-bahja-cream/60"><ProductImage src={variant.image} alt={`Elegant Clutch ${variant.colorEn} front view`} categorySlug="clutch-wallet-pieces" usage="card" /></div><div className="space-y-2 p-3"><h3 className="font-medium">إليجانت كلاتش</h3><p className="text-[11px] text-bahja-taupe">Elegant Clutch · {variant.colorEn}</p><p className="text-xs text-bahja-taupe">بوك يد / كلاتش أنيق بطابع محفظة صغيرة</p><div className="grid grid-cols-2 gap-2 text-xs sm:text-sm"><WhatsAppButton href={getWhatsAppUrl(variant.message)} className="w-full justify-center px-3 py-1.5">واتساب</WhatsAppButton><Link href="/shop/elegant-clutch" className="inline-flex w-full items-center justify-center rounded-full border border-bahja-beige/70 bg-white/70 px-3 py-1.5 text-center text-bahja-brown">التفاصيل</Link></div></div></article>)}</div> : <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filteredProducts.map((p)=><ProductCard key={p.slug} product={p} />)}</div>}
   </SectionShell>;
 }
