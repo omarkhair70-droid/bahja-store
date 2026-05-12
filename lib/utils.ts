@@ -26,6 +26,7 @@ export function formatBilingualPriceGuide(text: string) {
 export function getCollectionLabel(collectionSlug: string) {
   if (collectionSlug === 'himalayan-thread-bags') return 'شنط خيط الهيمالايا';
   if (collectionSlug === 'chain-thread-bags') return 'شنط خيوط السلسلة';
+  if (collectionSlug === 'elegant-clutch') return 'إليجانت كلاتش';
   if (collectionSlug === 'hair-accessories') return 'إكسسوارات شعر يدوية';
   if (collectionSlug === 'canvas-art') return 'لوحات كانفس';
   return '';
@@ -34,6 +35,7 @@ export function getCollectionLabel(collectionSlug: string) {
 export function getCollectionEnglish(collectionSlug: string) {
   if (collectionSlug === 'himalayan-thread-bags') return 'Himalayan Thread Bags';
   if (collectionSlug === 'chain-thread-bags') return 'Chain Thread Bags';
+  if (collectionSlug === 'elegant-clutch') return 'Elegant Clutch';
   if (collectionSlug === 'hair-accessories') return 'Hair Accessories';
   if (collectionSlug === 'canvas-art') return 'Canvas Art';
   return '';

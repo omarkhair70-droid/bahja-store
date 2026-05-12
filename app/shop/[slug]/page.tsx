@@ -15,6 +15,59 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const isBag = (product.cardVariant ?? 'bag') === 'bag';
   const isCanvas = product.cardVariant === 'canvas-custom';
   const isAccessory = product.cardVariant === 'accessory';
+  const isElegantClutch = product.slug === 'elegant-clutch';
+
+  if (isElegantClutch) {
+    return <section className="mx-auto w-full max-w-6xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="grid gap-5 lg:grid-cols-2">
+        <div className="relative h-[360px] overflow-hidden rounded-3xl bg-bahja-cream sm:h-[460px]">
+          <ProductImage src="/images/bahja/elegant-clutch/01-elegant-clutch-navy-front.webp" alt="Elegant Clutch handmade wallet in navy" categorySlug={product.categorySlug} usage="detail" />
+        </div>
+        <div className="space-y-3.5">
+          <h1 className="text-2xl font-semibold sm:text-3xl">Elegant Clutch</h1>
+          <p className="text-base text-bahja-taupe">إليجانت كلاتش</p>
+          <p className="text-sm">Clutch & Wallet Pieces <span className="text-bahja-taupe">· Elegant Clutch</span></p>
+          <p className="rounded-2xl bg-bahja-cream/80 p-3 text-sm leading-7">استفسري عن السعر عبر واتساب · Ask on WhatsApp</p>
+          <p className="text-sm leading-7 text-bahja-taupe">قطعة أنيقة أقرب إلى بوكٍ فاخر ومحفظةٍ صغيرة في آنٍ واحد، بتفاصيل يدوية ولمسة دافئة تليق بالمناسبات والاختيارات الهادئة.</p>
+          <p className="text-sm text-bahja-taupe">A compact handmade clutch with the grace of a keepsake and the ease of a wallet.</p>
+          <div className="flex flex-wrap gap-2">{[['Navy','bg-[#2f3f5f]'],['Black','bg-[#2f2a28]'],['Wine','bg-[#6b2f3a]']].map(([name,bg]) => <span key={name} className="inline-flex items-center gap-2 rounded-full border border-bahja-beige/70 bg-white/75 px-3 py-1 text-xs text-bahja-taupe"><span className={`h-2.5 w-2.5 rounded-full ${bg}`} />{name}</span>)}</div>
+          <ProductDetailActions product={product} />
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <h2 className="text-lg font-semibold">Color options</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/01-elegant-clutch-navy-front.webp" alt="Elegant Clutch handmade wallet in navy" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/02-elegant-clutch-black-front.webp" alt="Elegant Clutch black color variant" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/03-elegant-clutch-wine-front.webp" alt="Elegant Clutch wine color variant" categorySlug={product.categorySlug} usage="detail" /></div>
+        </div>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="relative h-64 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/04-elegant-clutch-navy-detail-closeup.webp" alt="Elegant Clutch navy closeup handmade detail" categorySlug={product.categorySlug} usage="detail" /></div>
+        <div className="relative h-64 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/05-elegant-clutch-wine-lifestyle.webp" alt="Elegant Clutch wine lifestyle styling" categorySlug={product.categorySlug} usage="detail" /></div>
+      </div>
+      <div className="relative h-72 overflow-hidden rounded-2xl bg-bahja-cream">
+        <ProductImage src="/images/bahja/elegant-clutch/06-elegant-clutch-three-colors.webp" alt="Elegant Clutch collection in navy black and wine" categorySlug={product.categorySlug} usage="detail" />
+      </div>
+      <div className="space-y-3">
+        <h2 className="text-lg font-semibold">Scale & handling</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/07-elegant-clutch-navy-held-top.webp" alt="Elegant Clutch navy held top view" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/08-elegant-clutch-black-held-top.webp" alt="Elegant Clutch black held top view" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-56 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/09-elegant-clutch-wine-held-top.webp" alt="Elegant Clutch wine held top view" categorySlug={product.categorySlug} usage="detail" /></div>
+        </div>
+      </div>
+      <div className="space-y-3">
+        <h2 className="text-lg font-semibold">Interior views</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="relative h-52 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/10-elegant-clutch-navy-interior.webp" alt="Elegant Clutch interior lining view in navy" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-52 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/11-elegant-clutch-black-interior.webp" alt="Elegant Clutch interior lining view in black" categorySlug={product.categorySlug} usage="detail" /></div>
+          <div className="relative h-52 overflow-hidden rounded-2xl bg-bahja-cream"><ProductImage src="/images/bahja/elegant-clutch/12-elegant-clutch-wine-interior.webp" alt="Elegant Clutch interior lining view in wine" categorySlug={product.categorySlug} usage="detail" /></div>
+        </div>
+      </div>
+    </section>;
+  }
 
   return <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:px-8">
     <div className={`relative overflow-hidden rounded-3xl bg-bahja-cream ${isCanvas ? 'h-[300px] p-3 sm:h-[380px] sm:p-4' : 'h-[330px] sm:h-[460px]'}`}><ProductImage src={detailImage} alt={getProductArabicTitle(product.arabicTitle, product.title)} categorySlug={product.categorySlug} usage="detail" /></div>

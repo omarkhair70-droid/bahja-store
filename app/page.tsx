@@ -11,7 +11,7 @@ const trustChips = ['صناعة يدوية', 'تجهيز حسب الطلب', 'أ
 
 export default function HomePage() {
   const featuredBags = publicProducts
-    .filter((p) => p.categorySlug === 'handmade-bags')
+    .filter((p) => p.categorySlug === 'handmade-bags' || p.slug === 'elegant-clutch')
     .sort((a, b) => (a.displayPriority ?? 99) - (b.displayPriority ?? 99))
     .slice(0, 4);
 
@@ -47,6 +47,25 @@ export default function HomePage() {
 
       <SectionShell label="الأكثر طلبًا" title="شنط مميزة" subtitle="اختاري قطعتكِ واطلبيها بتفاصيلكِ. كل قطعة تُجهز بعناية." className="pt-5">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{featuredBags.map((p) => <ProductCard key={p.slug} product={p} />)}</div>
+      </SectionShell>
+
+      <SectionShell label="قطعة الموسم" title="Elegant Clutch" subtitle="A compact handmade clutch with the grace of a keepsake and the ease of a wallet.">
+        <div className="grid items-center gap-4 rounded-[1.7rem] border border-bahja-beige/55 bg-gradient-to-br from-bahja-ivory to-bahja-blush/35 p-4 sm:grid-cols-2 sm:p-6">
+          <div className="relative h-[280px] overflow-hidden rounded-2xl bg-bahja-cream sm:h-[360px]">
+            <ProductImage src="/images/bahja/elegant-clutch/06-elegant-clutch-three-colors.webp" alt="Elegant Clutch collection in navy, black, and wine" categorySlug="clutch-wallet-pieces" usage="feature" />
+          </div>
+          <div className="space-y-3.5">
+            <h3 className="text-2xl font-semibold">إليجانت كلاتش</h3>
+            <p className="text-sm leading-7 text-bahja-taupe">قطعة أنيقة أقرب إلى بوكٍ فاخر ومحفظةٍ صغيرة في آنٍ واحد، بتفاصيل يدوية ولمسة دافئة تليق بالمناسبات والاختيارات الهادئة.</p>
+            <div className="flex flex-wrap gap-2">
+              {['Navy', 'Black', 'Wine'].map((color) => <span key={color} className="rounded-full border border-bahja-beige/70 bg-white/75 px-3 py-1 text-xs text-bahja-taupe">{color}</span>)}
+            </div>
+            <div className="grid gap-2 sm:flex">
+              <Link href="/shop/elegant-clutch" className="bahja-btn-secondary px-5 py-2.5 text-center text-sm">Explore Elegant Clutch</Link>
+              <WhatsAppButton href={getWhatsAppUrl('مرحبًا، أريد الاستفسار عن Elegant Clutch والألوان المتاحة.')} className="px-5 py-2.5 text-sm">استفسري عن السعر</WhatsAppButton>
+            </div>
+          </div>
+        </div>
       </SectionShell>
 
       <SectionShell label="اختاري حكايتك" title="مجموعات الشنط الرئيسية" subtitle="اختيارات واضحة حسب الخيط والتشطيب.">

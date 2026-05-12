@@ -10,6 +10,7 @@ const FILTERS = [
   { label: 'الشنط', sub: 'Bags', href: '/shop?category=handmade-bags', type: 'category', value: 'handmade-bags' },
   { label: 'خيط الهيمالايا', sub: 'Himalayan', href: '/shop?collection=himalayan-thread-bags', type: 'collection', value: 'himalayan-thread-bags' },
   { label: 'خيوط السلسلة', sub: 'Chain Thread', href: '/shop?collection=chain-thread-bags', type: 'collection', value: 'chain-thread-bags' },
+  { label: 'إليجانت كلاتش', sub: 'Clutch', href: '/shop?collection=elegant-clutch', type: 'collection', value: 'elegant-clutch' },
   { label: 'الإكسسوارات', sub: 'Accessories', href: '/shop?category=hair-accessories', type: 'category', value: 'hair-accessories' },
   { label: 'الكانفس', sub: 'Canvas', href: '/shop?category=canvas-art', type: 'category', value: 'canvas-art' }
 ] as const;
