@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bahjastore.app",
+      "sha256_cert_fingerprints": [
+        "D5:C7:6C:B4:C4:7A:F8:5F:30:48:BA:2C:D0:32:04:BE:60:55:1C:3B:38:99:D0:99:F4:06:1F:92:85:C6:C5:D1"
+      ]
+    }
+  }
+]
