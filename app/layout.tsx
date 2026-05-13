@@ -1,10 +1,17 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { OrderBagProvider } from '@/components/OrderBagProvider';
+import PWARegister from '@/components/PWARegister';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bahja-store.vercel.app';
+
+
+export const viewport: Viewport = {
+  themeColor: '#BFA27A'
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,9 +46,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl">
       <body>
         <OrderBagProvider>
+          <PWARegister />
           <Header />
           <main>{children}</main>
           <Footer />
+          <PWAInstallPrompt />
         </OrderBagProvider>
       </body>
     </html>
