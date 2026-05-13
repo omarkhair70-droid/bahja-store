@@ -14,6 +14,8 @@ export default function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const [isSamsungInternet, setIsSamsungInternet] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const inStandalone = useMemo(() => {
     if (typeof window === 'undefined') return false;
@@ -28,10 +30,17 @@ export default function PWAInstallPrompt() {
     if (dismissedUntil > Date.now()) return;
 
     const ua = window.navigator.userAgent;
+    const samsungInternet = /SamsungBrowser/i.test(ua);
     const iosDevice = /iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && 'ontouchend' in document);
     const safari = /^((?!chrome|android).)*safari/i.test(ua);
     const shouldShowIOSGuide = iosDevice && safari;
+    setIsSamsungInternet(samsungInternet);
     setIsIOS(shouldShowIOSGuide);
+
+    if (samsungInternet) {
+      setVisible(true);
+      return;
+    }
 
     if (shouldShowIOSGuide) setVisible(true);
 
@@ -72,16 +81,35 @@ export default function PWAInstallPrompt() {
     setDeferredPrompt(null);
   };
 
+  const handleCopyLink = async () => {
+    try {
+      await window.navigator.clipboard.writeText(window.location.href);
+      setCopyStatus('success');
+    } catch {
+      setCopyStatus('error');
+    }
+  };
+
+  const title = isSamsungInternet ? 'نزّلي بهجة بدون مشاكل' : 'نزّلي بهجة على موبايلك';
+  const body = isSamsungInternet
+    ? 'لو بتستخدمي متصفح Samsung Internet، افتحي بهجة من Google Chrome ثم اختاري “تثبيت التطبيق” لتجربة أفضل.'
+    : isIOS
+      ? 'من زر المشاركة في Safari اختاري Add to Home Screen لفتح بهجة كتطبيق.'
+      : 'افتحيه كتطبيق من الشاشة الرئيسية لتجربة أسرع وأجمل.';
+
   return (
     <aside className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-2xl border border-stone-200 bg-[#FDF8F1] p-4 shadow-xl" aria-live="polite">
-      <p className="text-sm font-semibold text-stone-900">نزّلي بهجة على موبايلك</p>
-      <p className="mt-1 text-sm text-stone-700">
-        {isIOS
-          ? 'من زر المشاركة في Safari اختاري Add to Home Screen لفتح بهجة كتطبيق.'
-          : 'افتحيه كتطبيق من الشاشة الرئيسية لتجربة أسرع وأجمل.'}
-      </p>
+      <p className="text-sm font-semibold text-stone-900">{title}</p>
+      <p className="mt-1 text-sm text-stone-700">{body}</p>
+      {isSamsungInternet && copyStatus !== 'idle' ? (
+        <p className="mt-2 text-xs text-stone-600">{copyStatus === 'success' ? 'تم نسخ الرابط' : 'تعذر نسخ الرابط'}</p>
+      ) : null}
       <div className="mt-3 flex items-center gap-2">
-        {!isIOS && deferredPrompt ? (
+        {isSamsungInternet ? (
+          <button onClick={handleCopyLink} className="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white">
+            نسخ رابط بهجة
+          </button>
+        ) : !isIOS && deferredPrompt ? (
           <button onClick={handleInstall} className="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white">
             تثبيت
           </button>
