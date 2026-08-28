@@ -105,5 +105,5 @@ function LegacyFooter() {
 
 export default function Footer() {
   const pathname = usePathname();
-  return pathname === '/' || pathname.startsWith('/shop') ? <EditorialGateFooter /> : <LegacyFooter />;
+  return pathname === '/' || pathname.startsWith('/shop') || pathname === '/cart' ? <EditorialGateFooter /> : <LegacyFooter />;
 }
