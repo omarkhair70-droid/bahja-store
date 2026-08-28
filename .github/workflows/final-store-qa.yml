@@ -57,3 +57,5 @@ jobs:
           name: bahja-final-store-qa
           path: qa-artifacts/
           if-no-files-found: error
+
+# rerun after QA selector fix
