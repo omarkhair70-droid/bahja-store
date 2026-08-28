@@ -261,8 +261,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#eee5da] sm:col-span-2 sm:aspect-[5/4]">
                   <ProductImage
-                    src={product.image}
-                    alt={product.arabicTitle}
+                    src={detailImage}
+                    alt={`${product.arabicTitle} — العرض الأساسي`}
                     categorySlug={product.categorySlug}
                     usage="detail"
                   />
@@ -272,15 +272,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   <ProductImage
                     src={evidence.angle}
                     alt={`${product.arabicTitle} من زاوية إضافية`}
-                    categorySlug={product.categorySlug}
-                    usage="detail"
-                  />
-                </div>
-
-                <div className="relative aspect-square overflow-hidden bg-[#eee5da]">
-                  <ProductImage
-                    src={detailImage}
-                    alt={`${product.arabicTitle} — العرض الأساسي`}
                     categorySlug={product.categorySlug}
                     usage="detail"
                   />
