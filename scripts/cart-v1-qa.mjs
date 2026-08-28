@@ -8,9 +8,9 @@ const seededItems = [
     productSlug: 'black-gold-chain-thread-bag',
     title: 'Black Gold Chain Thread Bag',
     arabicTitle: 'شنطة خيوط السلسلة أسود وذهبي',
-    image: '/images/bahja/redesigned/black-gold-chain-thread-bag-main.png',
-    collection: 'شنط خيوط السلسلة',
-    priceGuide: 'صغير: ٦٥٠ جنيه · متوسط: ٧٥٠ جنيه · كبير: ٨٥٠ جنيه',
+    image: '/images/bahja/redesigned/black-gold-chain/black-gold-chain-thread-bag-card.png',
+    collection: 'Chain Thread Bags',
+    priceGuide: 'صغير: 340 جنيه • متوسط: 450 جنيه • كبير: 590 جنيه',
     selectedSize: 'Large',
     quantity: 1,
     customNote: 'ذهبي هادي'
@@ -19,9 +19,9 @@ const seededItems = [
     productSlug: 'dusty-pink-satin-hair-accessories',
     title: 'Dusty Pink Satin Hair Accessories',
     arabicTitle: 'إكسسوارات شعر ساتان وردي هادئ',
-    image: '/images/bahja/redesigned/dusty-pink-satin-hair-accessories-main.png',
-    collection: 'إكسسوارات شعر يدوية',
-    priceGuide: 'استفسري عن السعر عبر واتساب',
+    image: '/images/bahja/hair-accessories/satin-hair-accessories-dusty-pink-01.webp',
+    collection: 'Hair Accessories',
+    priceGuide: 'متاح حسب الطلب',
     quantity: 2,
     customNote: ''
   }
