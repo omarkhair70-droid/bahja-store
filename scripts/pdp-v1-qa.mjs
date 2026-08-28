@@ -87,14 +87,14 @@ await inspect(
   '/shop/black-gold-chain-thread-bag',
   { width: 1440, height: 1000 },
   'شنطة خيوط السلسلة أسود وذهبي',
-  5
+  4
 );
 await inspect(
   'pdp-bag-mobile',
   '/shop/light-grey-himalayan-thread-bag',
   { width: 390, height: 844 },
   'شنطة خيط هيمالايا رمادي فاتح',
-  5
+  4
 );
 await inspect(
   'pdp-clutch-desktop',
