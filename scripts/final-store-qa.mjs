@@ -108,8 +108,9 @@ const menuPage = await menuContext.newPage();
 await menuPage.goto(`${baseURL}/contact`, { waitUntil: 'domcontentloaded' });
 await menuPage.getByRole('button', { name: 'القائمة' }).click();
 if (!(await menuPage.locator('#bahja-main-menu').isVisible())) failures.push('mobile-menu: did not open');
+const mobileMenu = menuPage.locator('#bahja-main-menu');
 for (const label of ['المتجر', 'المجموعات', 'طلب خاص', 'عن بهجة', 'تواصل معنا']) {
-  if (!(await menuPage.getByRole('link', { name: label, exact: true }).isVisible())) failures.push(`mobile-menu: "${label}" missing`);
+  if (!(await mobileMenu.getByRole('link', { name: label, exact: true }).isVisible())) failures.push(`mobile-menu: "${label}" missing`);
 }
 await menuPage.screenshot({ path: 'qa-artifacts/global-mobile-menu.png', fullPage: false });
 await menuContext.close();
