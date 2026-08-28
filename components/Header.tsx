@@ -98,7 +98,7 @@ export default function Header() {
   const { totalItems } = useOrderBag();
   const pathname = usePathname();
 
-  if (pathname === '/' || pathname === '/shop') return <EditorialGateHeader />;
+  if (pathname === '/' || pathname.startsWith('/shop')) return <EditorialGateHeader />;
 
   return (
     <header className="sticky top-0 z-30 border-b border-bahja-beige/45 bg-bahja-ivory/95 backdrop-blur-md">
