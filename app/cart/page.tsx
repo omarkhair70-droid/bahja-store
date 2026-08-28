@@ -9,10 +9,21 @@ import { displaySizeAr, getProductArabicTitle } from '@/lib/utils';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 function inferCategory(collection: string) {
-  if (collection.includes('كانفس')) return 'canvas-art';
-  if (collection.includes('إكسسوارات')) return 'hair-accessories';
-  if (collection.toLowerCase().includes('clutch') || collection.includes('كلاتش')) return 'clutch-wallet-pieces';
+  const normalized = collection.toLowerCase();
+  if (collection.includes('كانفس') || normalized.includes('canvas')) return 'canvas-art';
+  if (collection.includes('إكسسوارات') || normalized.includes('accessories')) return 'hair-accessories';
+  if (collection.includes('كلاتش') || normalized.includes('clutch')) return 'clutch-wallet-pieces';
   return 'handmade-bags';
+}
+
+function displayCollectionAr(collection: string) {
+  const normalized = collection.toLowerCase();
+  if (collection.includes('خيوط السلسلة') || normalized.includes('chain thread')) return 'شنط خيوط السلسلة';
+  if (collection.includes('هيمالايا') || normalized.includes('himalayan')) return 'شنط خيط الهيمالايا';
+  if (collection.includes('إكسسوارات') || normalized.includes('accessories')) return 'إكسسوارات شعر';
+  if (collection.includes('كانفس') || normalized.includes('canvas')) return 'لوحات كانفس';
+  if (collection.includes('كلاتش') || normalized.includes('clutch')) return 'إليجانت كلاتش';
+  return collection;
 }
 
 export default function CartPage() {
@@ -97,7 +108,7 @@ export default function CartPage() {
                   <div className="min-w-0">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-[10px] tracking-[0.08em] text-[#817067] sm:text-[11px]">{item.collection}</p>
+                        <p className="text-[10px] tracking-[0.08em] text-[#817067] sm:text-[11px]">{displayCollectionAr(item.collection)}</p>
                         <Link href={`/shop/${item.productSlug}`} className="mt-1 block">
                           <h3 className="text-lg font-medium leading-6 sm:text-xl">
                             {getProductArabicTitle(item.arabicTitle, item.title)}
