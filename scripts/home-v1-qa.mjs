@@ -7,7 +7,16 @@ await fs.mkdir('qa-artifacts', { recursive: true });
 const browser = await chromium.launch();
 const failures = [];
 
-async function inspect(name, viewport) {
+async function waitForImages(page) {
+  await page.locator('img').evaluateAll((images) =>
+    Promise.all(images.map((img) => img.complete ? undefined : new Promise((resolve) => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    })))
+  );
+}
+
+async function inspectHome(name, viewport) {
   const context = await browser.newContext({ viewport });
   const page = await context.newPage();
 
@@ -19,12 +28,7 @@ async function inspect(name, viewport) {
   const response = await page.goto(baseURL, { waitUntil: 'networkidle' });
   if (!response?.ok()) failures.push(`${name}: home returned HTTP ${response?.status()}`);
 
-  await page.locator('img').evaluateAll((images) =>
-    Promise.all(images.map((img) => img.complete ? undefined : new Promise((resolve) => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true });
-    })))
-  );
+  await waitForImages(page);
 
   const metrics = await page.evaluate(() => ({
     viewport: window.innerWidth,
@@ -57,8 +61,20 @@ async function inspect(name, viewport) {
   await context.close();
 }
 
-await inspect('desktop', { width: 1440, height: 1000 });
-await inspect('mobile', { width: 390, height: 844 });
+async function smokeRoute(route) {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const page = await context.newPage();
+  const response = await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
+  if (!response?.ok()) failures.push(`${route}: returned HTTP ${response?.status()}`);
+  await context.close();
+}
+
+await inspectHome('desktop', { width: 1440, height: 1000 });
+await inspectHome('mobile', { width: 390, height: 844 });
+
+for (const route of ['/shop', '/shop/elegant-clutch', '/cart']) {
+  await smokeRoute(route);
+}
 
 const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
 const reducedPage = await reduced.newPage();
@@ -69,7 +85,15 @@ await reduced.close();
 
 await browser.close();
 
-await fs.writeFile('qa-artifacts/report.json', JSON.stringify({ failures, passed: failures.length === 0 }, null, 2));
+await fs.writeFile('qa-artifacts/report.json', JSON.stringify({
+  failures,
+  passed: failures.length === 0,
+  checked: {
+    homeViewports: ['1440x1000', '390x844'],
+    smokeRoutes: ['/shop', '/shop/elegant-clutch', '/cart'],
+    reducedMotion: true,
+  }
+}, null, 2));
 
 if (failures.length) {
   console.error(failures.join('\n'));
