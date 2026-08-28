@@ -6,6 +6,10 @@ on:
       - design/home-v1-gate
   workflow_dispatch:
 
+concurrency:
+  group: bahja-home-v1-gate
+  cancel-in-progress: true
+
 jobs:
   home-v1-qa:
     runs-on: ubuntu-latest
