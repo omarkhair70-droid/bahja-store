@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import WhatsAppButton from './WhatsAppButton';
 import { getWhatsAppUrl, whatsappMessages } from '@/lib/whatsapp';
 import { useOrderBag } from './OrderBagProvider';
@@ -16,9 +17,88 @@ const navLinks = [
   { ar: 'تواصل معنا', en: 'Contact', href: '/contact' }
 ];
 
+const homeNav = [
+  { label: 'المتجر', href: '/shop' },
+  { label: 'الشنط', href: '/shop?category=handmade-bags' },
+  { label: 'المجموعات', href: '/collections' },
+  { label: 'طلب خاص', href: '/custom-orders' },
+  { label: 'عن بهجة', href: '/about' }
+];
+
+function HomeGateHeader() {
+  const { totalItems } = useOrderBag();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-[#201a17]/10 bg-[#f8f4ed]/95 backdrop-blur-md">
+      <nav className="mx-auto max-w-[1440px] px-4 sm:px-7 lg:px-10" aria-label="التنقل الرئيسي">
+        <div className="grid h-[68px] grid-cols-[1fr_auto_1fr] items-center lg:h-[78px]">
+          <div className="hidden items-center gap-6 text-[13px] text-[#3f342f] lg:flex">
+            {homeNav.map((item) => (
+              <Link key={item.href} href={item.href} className="border-b border-transparent py-2 transition hover:border-[#3f342f]">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls="bahja-home-menu"
+            onClick={() => setOpen((value) => !value)}
+            className="justify-self-start p-2 text-sm text-[#29211d] lg:hidden"
+          >
+            {open ? 'إغلاق' : 'القائمة'}
+          </button>
+
+          <Link href="/" aria-label="بهجة ستور — الرئيسية" className="justify-self-center">
+            <Image
+              src="/images/bahja/brand/bahja-logo-horizontal.png"
+              alt="بهجة ستور"
+              width={220}
+              height={60}
+              priority
+              className="h-9 w-auto sm:h-10 lg:h-11"
+            />
+          </Link>
+
+          <div className="flex items-center justify-self-end gap-4 text-[13px] text-[#29211d]">
+            <Link href="/custom-orders" className="hidden border-b border-transparent py-2 transition hover:border-[#29211d] sm:inline">
+              طلب خاص
+            </Link>
+            <Link href="/cart" className="whitespace-nowrap border-b border-[#29211d] py-2">
+              السلة <span className="tabular-nums">({totalItems})</span>
+            </Link>
+          </div>
+        </div>
+
+        {open && (
+          <div id="bahja-home-menu" className="border-t border-[#201a17]/10 py-4 lg:hidden">
+            <div className="grid gap-1">
+              {homeNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-11 items-center justify-between border-b border-[#201a17]/10 py-2 text-sm text-[#29211d]"
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">↙</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+}
+
 export default function Header() {
   const { totalItems } = useOrderBag();
   const pathname = usePathname();
+
+  if (pathname === '/') return <HomeGateHeader />;
 
   return (
     <header className="sticky top-0 z-30 border-b border-bahja-beige/45 bg-bahja-ivory/95 backdrop-blur-md">
