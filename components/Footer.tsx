@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { site } from '@/content/site';
 
-function HomeGateFooter() {
+function EditorialGateFooter() {
   return (
     <footer className="border-t border-[#241d19]/12 bg-[#eee3d6] text-[#241d19]">
       <div className="mx-auto max-w-[1440px] px-5 py-12 sm:px-8 sm:py-16 lg:px-12">
@@ -105,5 +105,5 @@ function LegacyFooter() {
 
 export default function Footer() {
   const pathname = usePathname();
-  return pathname === '/' ? <HomeGateFooter /> : <LegacyFooter />;
+  return pathname === '/' || pathname === '/shop' ? <EditorialGateFooter /> : <LegacyFooter />;
 }
