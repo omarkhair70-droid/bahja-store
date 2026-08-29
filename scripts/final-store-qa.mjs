@@ -118,10 +118,14 @@ await menuContext.close();
 const shopContext = await browser.newContext({ viewport: mobile });
 const shopPage = await shopContext.newPage();
 await shopPage.goto(`${baseURL}/shop`, { waitUntil: 'domcontentloaded' });
-await shopPage.getByRole('link', { name: 'خيط الهيمالايا', exact: true }).click();
-await shopPage.waitForLoadState('domcontentloaded');
-if (!(await shopPage.locator('h1').getByText('شنط بخامة أهدأ وحضور يومي', { exact: true }).isVisible())) {
-  failures.push('shop-filter: Himalayan filter navigation failed');
+const himalayanFilter = shopPage.getByRole('link', { name: 'خيط الهيمالايا', exact: true });
+await Promise.all([
+  shopPage.waitForURL('**/shop?collection=himalayan-thread-bags', { timeout: 10000 }),
+  himalayanFilter.click()
+]);
+const filteredHeading = await shopPage.locator('h1').textContent();
+if (!filteredHeading?.includes('شنط بخامة أهدأ وحضور يومي')) {
+  failures.push(`shop-filter: Himalayan filter navigation failed, got "${filteredHeading}" at ${shopPage.url()}`);
 }
 await shopContext.close();
 
