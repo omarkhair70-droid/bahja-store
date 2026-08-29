@@ -139,11 +139,14 @@ if (!(await journeyPage.getByText('تمت إضافة القطعة إلى الس�
 
 const cartLink = journeyPage.getByRole('link', { name: /السلة/ }).first();
 if (!(await cartLink.textContent())?.includes('(1)')) failures.push('journey: cart count did not update');
-await cartLink.click();
-await journeyPage.waitForLoadState('domcontentloaded');
+await Promise.all([
+  journeyPage.waitForURL('**/cart', { timeout: 10000 }),
+  cartLink.click()
+]);
 
-if (!(await journeyPage.getByText('شنطة خيوط السلسلة أسود وذهبي', { exact: true }).isVisible())) failures.push('journey: cart item missing');
-if (!(await journeyPage.getByText('المقاس: كبير', { exact: true }).isVisible())) failures.push('journey: selected size missing in cart');
+const cartItem = journeyPage.locator('main article').filter({ hasText: 'شنطة خيوط السلسلة أسود وذهبي' });
+if (!(await cartItem.isVisible())) failures.push('journey: cart item missing');
+if (!(await cartItem.getByText('المقاس: كبير', { exact: true }).isVisible())) failures.push('journey: selected size missing in cart');
 
 await journeyPage.getByLabel('الاسم').fill('اختبار نهائي');
 await journeyPage.getByLabel('رقم الهاتف').fill('01000000000');
